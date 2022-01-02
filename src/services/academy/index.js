@@ -1,0 +1,25 @@
+const { addAcademy } = require('./addAcademy')
+const { deleteAcademy } = require('./deleteAcademy')
+const { editAcademy } = require('./editAcademy')
+const { getAllAcademies } = require('./getAllAcademies')
+const { getMyAcademies } = require('./getMyAcademies')
+const { affectCoachToAcademy } = require('./affectCoachToAcademy')
+const { retirerCoachFromAcademy } = require('./retirerCoachFromAcademy')
+const { getCoaches } = require('./getCoaches')
+const { getPlayersByAcademy } = require('./getPlayersByAcademy')
+const { getAcademiesByCoachId } = require('./getAcademiesByCoachId')
+const { getAcademyById } = require('./getAcademy')
+const { updateImage } = require('./updateImage')
+
+exports.updateImage = updateImage
+exports.getAcademiesByCoachId = getAcademiesByCoachId
+exports.addAcademy = addAcademy
+exports.deleteAcademy = deleteAcademy
+exports.editAcademy = editAcademy
+exports.getAllAcademies = getAllAcademies
+exports.getMyAcademies = getMyAcademies
+exports.affectCoachToAcademy = affectCoachToAcademy
+exports.retirerCoachFromAcademy = retirerCoachFromAcademy
+exports.getCoaches = getCoaches
+exports.getPlayersByAcademy = getPlayersByAcademy
+exports.getAcademyById = getAcademyById
