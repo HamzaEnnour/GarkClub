@@ -1,0 +1,10 @@
+<div [class]="'card dashboard-filled-line-chart '+class">
+    <div class="card-body">
+        <div class="float-left float-none-xs">
+        </div>
+    </div>
+    <!-- <div class="card-body pt-0"> -->
+        <app-area-chart [shadow]="true" class="chart" [options]="chartDataConfig.areaChartOptions"
+            [data]="areaChartData"></app-area-chart>
+    <!-- </div> -->
+</div>

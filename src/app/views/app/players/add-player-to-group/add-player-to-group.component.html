@@ -1,0 +1,49 @@
+  <h1 class="text-center"> Ajouter un nouveau joueur </h1>
+
+<form #reservForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" 
+        required #lastName="ngModel" name="lastName" 
+        [(ngModel)]="resMobile.lastName" />
+        <span  style="font-size: 100% !important;" >Nom: </span>
+        <div *ngIf="!lastName.valid && reservForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+
+
+    <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required 
+        #firstName="ngModel" name="firstName" 
+        [(ngModel)]="resMobile.firstName" />
+        <span  style="font-size: 100% !important;" >Prénom: </span>
+        <div *ngIf="!firstName.valid && reservForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+
+    <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+         required #email="ngModel" name="email"  
+        [(ngModel)]="resMobile.email" />
+        <span style="font-size: 100% !important;" >Email:</span>
+        <div *ngIf="!email.valid && reservForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+
+    
+
+    <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required 
+        #password="ngModel" name="password" type="password" 
+        [(ngModel)]="resMobile.password" />
+        <span style="font-size: 100% !important;" >Mot de passe</span>
+        <div *ngIf="!password.valid && reservForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+    
+
+    <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()" > Annuler </button>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+        [isDisabled]="buttonDisabled || reservForm.invalid">
+          <span>Ajouter</span>
+        </app-state-button>
+      </div>
+</form>
+
+<simple-notifications></simple-notifications>

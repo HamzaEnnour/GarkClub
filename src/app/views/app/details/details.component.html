@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-12">
+        <app-heading [title]="'Tableau de bord'" ></app-heading>
+        <app-breadcrumb></app-breadcrumb>
+        <div class="separator mb-5"></div>
+    </div>
+</div> 
+<div>
+    <div class="container">
+        <div class="row addAcademy">
+            <div class="col">
+                <button type="button" class="btn btn-light fontColor" (click)="NavigateToAcademies()">
+                <i class="fas fa-cog fa-lg"></i> Gérer mes clubs</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <app-profile-statuses [academyId]="academyId"></app-profile-statuses>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col">
+                        <h2> <i class="flaticon-diagram flat"></i> Statistiques </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+            [title]="'Joueurs'" [detail]="'Nombre des joueurs'"
+            [percent]="100" [progressText]="stats?.players">
+        </app-gradient-with-radial-progress-card>
+                </div>
+                <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+            [title]="'Coaches'" [detail]="'Nombre des entraineurs'"
+            [percent]="100" [progressText]="stats?.coaches">
+        </app-gradient-with-radial-progress-card>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+            [title]="'Groupes'" [detail]="'Nombre des groupes'"
+            [percent]="100" [progressText]="stats?.groupes">
+        </app-gradient-with-radial-progress-card>
+                </div>
+                <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+            [title]="'Abonnements'" [detail]="'Nombre des non payés'"
+            [percent]="(nbNotPayedPlayer/(nbNotPayedPlayer+nbPayedPlayer)) *100" [progressText]="(nbNotPayedPlayer+'/'+(nbNotPayedPlayer+nbPayedPlayer))">
+        </app-gradient-with-radial-progress-card>
+                </div>
+        <div class="row">
+            <div class="col">
+                <app-equipment [academyId]="academyId"></app-equipment>
+            </div>
+            <div class="col">
+                <app-sortable-statistics-row [academyId]="academyId" [type]="'stats'" ></app-sortable-statistics-row>
+            </div>
+    </div>
+    </div>
+    <div class="space">
+        
+    </div>

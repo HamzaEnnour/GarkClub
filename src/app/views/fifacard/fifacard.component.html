@@ -1,0 +1,88 @@
+<div id="background">
+    <!-- <div id="Layer0"><img src="../../../assets/imgs/fifaCard/Layer0.png"></div> -->
+    <div [id]="selectedItem"><img [src]="itemImageUrl"></div>
+    <div id="EDITABLE">
+        <div class="num" [ngStyle]="{'color' : color, 'text-align': 'center','font-size' : sizeName+'px'}">Name</div>
+    </div>
+    <div id="PACSHOPAS">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px',
+        'margin-top': '-5px'}">PAC</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px'}">SHO</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px'}">PAS</div>
+    </div>
+    
+    <div id="DRIDEFPHY">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px',
+         'margin-top': '-5px','margin-left': '5px'}">DRI</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px', 'width': '44px',
+        'margin-left': '5px'}">DEF</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px', 'width': '44px',
+        'margin-left': '5px'}">PHY</div>
+    </div>
+    <div id="layer_928273">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '25px',
+         'margin-top': '-5px',
+         'margin-left': '-10px'}">99</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '25px','margin-left': '-10px'}">20</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '25px','margin-left': '-10px'}">10</div>
+    </div>
+   <div id="layer_928273_0">
+       <div class="num" [ngStyle]="{'color' : color,
+        'font-size' : sizeScore+'px',
+        'width': '25px',
+        'margin-top': '-5px'}">99</div>
+        <div class="num" [ngStyle]="{'color' : color, 
+        'font-size' : sizeScore+'px',
+        'width': '25px'}">22</div>
+    <div class="num" [ngStyle]="{'color' : color,
+    'font-size' : sizeScore+'px',
+    'width': '25px'}">10</div>
+</div>
+    <div id="layer_99">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : size+'px'}">99</div>
+    </div>
+    <div id="POS">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizePos+'px'}">ST</div>
+    </div>
+    <div id="OUTLINES"><img src="../../../assets/imgs/fifaCard/OUTLINES.png"></div>
+    <!-- <div id="BADGE"><img src="../../../assets/imgs/fifaCard/BADGE.png"></div>
+    <div id="NATION"><img src="../../../assets/imgs/fifaCard/NATION.png"></div> -->
+    <div id="Layer1"><img src="../../../assets/imgs/fifaCard/Layer1.png"></div>
+</div>
+<br />
+<div>
+    <label for="cars">Choose a pattern:</label>
+
+<select name="pattern" #pattern (change)="selectPattern(pattern.value)">
+  <option
+    *ngFor='let option of dropDownData' 
+    [value]="option">{{option}}</option>
+</select>
+</div>
+<div>
+    <label>Color</label>
+    <input [(colorPicker)]="color" [style.background]="color"/>
+</div>
+<div>
+    <label>Power Size</label>
+    <input type="number" [value]="size" (input)="changeSize($event.target.value)" />
+</div>
+<div>
+    <label>Position Size</label>
+    <input type="number" [value]="sizePos" (input)="changePosSize($event.target.value)" />
+</div>
+<div>
+    <label>Name Size</label>
+    <input type="number" [value]="sizeName" (input)="changeNameSize($event.target.value)" />
+</div>
+<div>
+    <label>Score Size</label>
+    <input type="number" [value]="sizeScore" (input)="changeScoreSize($event.target.value)" />
+</div>

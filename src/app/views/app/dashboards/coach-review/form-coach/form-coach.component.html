@@ -1,0 +1,174 @@
+<form #reservForm="ngForm">
+    <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+        Evaluation: <b>{{user?.firstName}} {{user?.lastName}} </b> <br>
+    </h4>
+    <div *ngIf="!visible">
+    <div class="row">
+        <div class="col">
+            PAC
+        </div>
+        <div class="col">
+            <mat-slider (input)="getPACValue($event)"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="100"
+                [value]="resMobile.pac"></mat-slider> 
+                <!-- <mat-star-rating [rating]="ratingPAC"  [starCount]="starCount" [color]="starColor" 
+                [visiblity]="false"
+                        (ratingUpdated)="getPACValueStar($event)"></mat-star-rating> -->
+
+        </div>
+        <div class="col">
+            {{resMobile.pac}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            DEF
+        </div>
+        <div class="col">
+            <mat-slider (input)="getDEFValue($event)"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="100"
+                [value]="resMobile.def"></mat-slider>
+
+                <!-- <mat-star-rating [rating]="ratingDEF"  [starCount]="starCount" [color]="starColor"
+                [visiblity]="false" (ratingUpdated)="getDEFValueStar($event)"></mat-star-rating> -->
+        </div>
+        <div class="col">
+            {{resMobile.def}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            PAS
+        </div>
+        <div class="col">
+            <mat-slider (input)="getPASValue($event)"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="100"
+                [value]="resMobile.pas"></mat-slider>
+
+                <!-- <mat-star-rating [rating]="ratingPAS"  [starCount]="starCount" [color]="starColor"
+                [visiblity]="false" (ratingUpdated)="getPASValueStar($event)"></mat-star-rating> -->
+        </div>
+        <div class="col">
+            {{resMobile.pas}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            DRI
+        </div>
+        <div class="col">
+            <mat-slider (input)="getDRIValue($event)"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="100"
+                [value]="resMobile.dri"></mat-slider>
+
+                <!-- <mat-star-rating [rating]="ratingDRI"  [starCount]="starCount" [color]="starColor" 
+                [visiblity]="false" (ratingUpdated)="getDRIValueStar($event)"></mat-star-rating> -->
+        </div>
+        <div class="col">
+            {{resMobile.dri}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            PHY
+        </div>
+        <div class="col">
+            <mat-slider (input)="getPHYValue($event)"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="100"
+                [value]="resMobile.phy"></mat-slider>
+
+                <!-- <mat-star-rating [rating]="ratingPHY"  [starCount]="starCount" [color]="starColor" 
+                [visiblity]="false" (ratingUpdated)="getPHYValueStar($event)"></mat-star-rating> -->
+        </div>
+        <div class="col">
+            {{resMobile.phy}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            SHO
+        </div>
+        <div class="col">
+            <mat-slider (input)="getSHOValue($event)"
+                thumbLabel
+                [displayWith]="formatLabel"
+                tickInterval="1"
+                min="1"
+                max="100"
+                [value]="resMobile.sho"></mat-slider>
+
+                <!-- <mat-star-rating [rating]="ratingSHO"  [starCount]="starCount" [color]="starColor" 
+                [visiblity]="false" (ratingUpdated)="getSHOValueStar($event)"></mat-star-rating> -->
+        </div>
+        <div class="col">
+            {{resMobile.sho}}
+        </div>
+    </div>
+
+    <table class="custom-event-editor" width="100%" cellpadding="5">
+        <tbody>
+            <tr>
+                <td class="e-textlabel">Buts:</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Nombre des buts"
+                        [ngModelOptions]="{standalone: true}" type="number" id="Name-Buts" name="buts"
+                        [(ngModel)]="resMobile.buts" #nm="ngModel" style="width: 100%" />
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">Assists:</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Nombre des assists"
+                        [ngModelOptions]="{standalone: true}" type="number" id="Name-Assists" name="assist"
+                        [(ngModel)]="resMobile.assist" #nm="ngModel" style="width: 100%" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <div style="display: flex; width: 100%" margin>
+        <div>
+            <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow'" [currentState]="buttonState"
+                [isDisabled]="buttonDisabled || reservForm.invalid" (click)="onSubmit()">
+                <span>Confirmer</span>
+            </app-state-button>
+        </div>
+    </div> -->
+
+    <div style="display: flex;">
+        <div style="margin: 0 auto;"></div>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'"
+            [currentState]="buttonState"
+            [isDisabled]="buttonDisabled || reservForm.invalid" (click)="onSubmit()">
+            Confirmer
+        </app-state-button>
+    </div>
+</div>
+
+  </form>
+
+
+  

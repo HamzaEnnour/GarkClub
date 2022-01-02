@@ -1,0 +1,89 @@
+<form #reservForm="ngForm">
+  <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+      {{resMobile.Name}}<br>
+  </h4>
+
+  <ejs-tab id="element" overflowMode='Scrollable'  [cssClass]="tabClass" height="200px">
+    <e-tabitems>
+        <e-tabitem>
+            <ng-template #headerText>
+                Info
+            </ng-template>
+            <ng-template #content>
+                <div class="row">
+                    <div class="col">
+                        <b>Nom du Groupe</b>
+                    </div>
+                    <div class="col">
+                        {{this.resMobile.Groupe}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <b>Début à</b>
+                    </div>
+                    <div class="col">
+                        {{resMobile.StartDate | date: 'HH:mm'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <b>Fin à</b>
+                    </div>
+                    <div class="col">
+                        {{resMobile.EndDate | date: 'HH:mm'}}
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <b>Le</b>
+                    </div>
+                    <div class="col">
+                        {{resMobile.StartDate | date: 'shortDate'}}
+                    </div>
+                </div>
+            </ng-template>
+
+        </e-tabitem>
+        <!-- <e-tabitem>
+            <ng-template #headerText>
+
+                <div class="fontColor"> Joueurs </div>
+
+            </ng-template>
+            <ng-template #content>
+
+            </ng-template>
+        </e-tabitem> -->
+        <!-- <e-tabitem>
+            <ng-template #headerText>
+
+                <div class="fontColor"> Statistiques </div>
+
+            </ng-template>
+            <ng-template #content>
+
+
+            </ng-template>
+
+        </e-tabitem> -->
+    </e-tabitems>
+</ejs-tab>
+
+  <div style="display: flex;">
+      <div>
+          <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler
+          </button>
+      </div>
+      <div style="margin: 0 auto;"></div>
+      <div>
+          <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow'" (click)="onSubmit()">
+              <span>Evaluation</span>
+          </app-state-button>
+      </div>
+  </div>
+</form>
+
+<simple-notifications></simple-notifications>

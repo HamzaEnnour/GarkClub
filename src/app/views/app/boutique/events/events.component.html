@@ -1,0 +1,333 @@
+<div id="normal-view">
+    <div class="container" id="main">
+        <div class="row justify-content-center">
+            <div class="col-md-6" *ngIf="isLoading">
+                <h5 class="text-center"> Chargement ... </h5>
+            </div>
+
+
+            <div class="col-md-4" *ngIf="!isLoading && !isMobile">
+                <ejs-calendar locale='fr-CH' style="max-width: none !important;" #calendar (change)="deposit()"
+                    [value]='dateValue' start='Week'></ejs-calendar>
+                <div class="btn-group" style="margin-top: 10px; width: 100%;" dropdown>
+                    <button id="button-animated" dropdownToggle type="button"
+                        class="btn btn-gradiant btn-block dropdown-toggle" aria-controls="dropdown-animated">
+                         <span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-animated" style="width: 100%;" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem" *ngFor="let terrain of ListTerrain">
+                            <a class="dropdown-item" [routerLink]="adminRoot+'/terrains/view/'+terrain._id">
+                               
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8" *ngIf="!isLoading && !isMobile"
+                [ngStyle]="{ 'background-image' : 'linear-gradient(90deg, rgba(51,50,50,0.5) 0%, rgba(121,119,119,0.5) 46%, rgba(255,255,255,0.3) 100%), url('+ image +')' }"
+                style="background-size: 100%; background-position: center; background-repeat: no-repeat;">
+                <div class="overlay">
+
+                    <div class="data-overlay">
+                        <div style="display: flex; margin-top: 10px;">
+                            <div>
+                                <h1 style="margin :0 !important;">  </h1>
+                                <h2></h2>
+                            </div>
+                            <div style="margin: 0 auto;"></div>
+                            <div style="margin-right: 25px;">
+                                <button mat-fab (click)="openEdit()" class="edit-web">
+                                    <i class="flaticon-setting-lines"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                        <div style="margin: auto 0"></div>
+                        <div class="marged-top">
+                            <button mat-fab class="edit-web" (click)="openDialog('select')">
+                                <mat-icon>photo_camera</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mb-3" *ngIf="!isLoading && isMobile" id="background-image-mobile-view"
+                [ngStyle]="{ 'background-image' : 'linear-gradient(90deg, rgba(51,50,50,0.5) 0%, rgba(121,119,119,0.5) 46%, rgba(255,255,255,0.3) 100%), url('+ image +')' }"
+                style="background-size: 100%; background-position: center; background-repeat: no-repeat; height: 180px;">
+                <div class="overlay">
+                    <div class="data-overlay">
+                        <div style="display: flex;">
+                            <div>
+                                <h1 style="margin :0 !important;">  </h1>
+                                <h2>  </h2>
+                            </div>
+                            <div style="margin: 0 auto;"></div>
+                            <div style="margin-right: 13px;">
+                                <button mat-mini-fab class="edit-mobile" (click)="openEdit()">
+                                    <i class="flaticon-setting-lines"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                        <div style="margin: auto 0"></div>
+                        <div class="marged-top">
+                            <button mat-mini-fab class="edit-mobile" (click)="openDialog('select')">
+                                <mat-icon>photo_camera</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-0" id="test" *ngIf="!isLoading && isMobile">
+                <ejs-calendar locale='fr-CH' style="max-width: none !important;" #calendar (change)="deposit()"
+                    [value]='dateValue' start='Week'></ejs-calendar>
+                <div class="btn-group" style="margin-top: 10px; width: 100%;" dropdown>
+                    <button id="button-animated" dropdownToggle type="button"
+                        class="btn btn-gradiant btn-block dropdown-toggle" aria-controls="dropdown-animated">
+                         <span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-animated" style="width: 100%;" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem" *ngFor="let terrain of ListTerrain">
+                            <a class="dropdown-item" [routerLink]="adminRoot+'/terrains/view/'+terrain._id">
+                               
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+
+                    <div *ngFor="let col of terrainsColors">
+                        <div style="display: flex">
+                            <div class="mr-2" style="display: flex; flex-direction: column;">
+                                <div style="width: 15px; height: 15px; border-radius: 50%; margin-top: auto; margin-bottom: auto;"
+                                    [ngStyle]="{ 'background-color' : col.color }"></div>
+                            </div>
+                            <div>
+                                <h2 style="margin: 0 !important"></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-bottom: 100px;">
+                    <ejs-schedule #scheduleObj width='100%' [currentView]="currentViewMode" height='550px'
+                        [selectedDate]="selectedDate" [eventSettings]="eventSettings"
+                        (actionBegin)="onActionBegin($event)" (eventRendered)="onEventRendered($event)" locale='fr-CH'
+                        [timeScale]="timeScale" (popupOpen)="onPopupOpen($event)">
+                        <e-views>
+                            <e-view option="Day">Jour</e-view>
+                            <e-view option="Week">Semaine</e-view>
+                            <e-view option="Month">Mois</e-view>
+                        </e-views>
+                        <!-- <ng-template #editorTemplate locale='fr-CH' let-data>
+                            <table *ngIf="data != undefined" class="custom-event-editor" width="100%" cellpadding="5">
+                                <tbody>
+                                    <tr>
+                                        <td class="e-textlabel">Réservation Pour</td>
+                                        <td colspan="4">
+                                            <input class="e-field e-input" required placeholder="Nom du réservant"
+                                                type="text" value="{{data?.Name || data?.name}}" id="Name" name="Name"
+                                                style="width: 100%" />
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="e-textlabel">Numéro de téléphone</td>
+                                        <td colspan="4">
+                                            <input class="e-field e-input" required placeholder="Numéro de téléphone"
+                                                type="text" value="{{data?.num}}" id="num" name="num"
+                                                style="width: 100%" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="e-textlabel">Prix de réservation</td>
+                                        <td colspan="4">
+                                            <input class="e-field e-input" required placeholder="Prix de réservation"
+                                                type="number" value="{{data?.frais}}" id="frais" name="frais"
+                                                style="width: 100%" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="e-textlabel">Terrain</td>
+                                        <td colspan="4">
+                                            <input class="e-field e-input" required placeholder="Terrain" disabled
+                                                type="text" value="{{terrainSelected}}" id="terrain" name="terrain"
+                                                style="width: 100%" />
+                                        </td>
+                                    </tr>
+                                  
+                                    <tr>
+                                        <td class="e-textlabel">A partir de</td>
+                                        <td colspan="4">
+                                           
+                                            <app-date-picker (valueChange)="startTimeHasChanged($event)" [timeChoosed]="data.StartTime" ></app-date-picker>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="e-textlabel">Jusqu'à</td>
+                                        <td colspan="4">
+                                          
+                                            <app-date-picker [timeChoosed]="data.EndTime" ></app-date-picker>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table> 
+                        </ng-template>-->
+                    </ejs-schedule>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="fixedbutton">
+        <button mat-fab *ngIf="isMobile" (click)="openAddReservationMobile()" class="btn btn-gradiant">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-fab *ngIf="!isMobile" (click)="addReservationDialog()" class="btn btn-gradiant">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+</div>
+<simple-notifications></simple-notifications>
+<div id="add-new-reservation" *ngIf="!isLoading" style="display: none; padding-bottom: 100px;">
+    <form #reservForm="ngForm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="modal-title text-center"> </h1>
+                </div>
+            </div>
+        </div>
+
+        <label class="e-textlabel fw-700">Réservation Pour</label>
+        <input class="e-field e-input mb-3" required placeholder="Nom du réservant"
+            [ngModelOptions]="{standalone: true}" #nomres="ngModel" type="text" id="Name-Mob" name="Name"
+            [(ngModel)]="resMobile.Name" style="width: 100%" />
+        <div class="text-danger" *ngIf="(nomres.touched || reservForm.submitted ) && nomres.invalid"> Veuillez saisir le
+            nom du réservant </div>
+
+        <label class="e-textlabel fw-700 mt-3">Numéro de téléphone</label>
+        <input class="e-field e-input mb-3" required [(ngModel)]="resMobile.num" [ngModelOptions]="{standalone: true}"
+            required placeholder="Numéro de téléphone" #tele="ngModel" type="text" id="num-mobile" name="num"
+            style="width: 100%" />
+        <div class="text-danger" *ngIf="tele.touched || reservForm.submitted">
+            <div *ngIf="tele.invalid">
+                Veuillez saisir un numéro de téléphone
+            </div>
+            <div *ngIf="!validateNumber() && tele.valid">
+                Veuillez saisir un numéro de téléphone valide
+            </div>
+        </div>
+
+        <br>
+        <label class="e-textlabel fw-700 mt-3">Prix de réservation</label>
+        <input class="e-field e-input mb-3" required [(ngModel)]="resMobile.frais" placeholder="Prix de réservation"
+            type="number" #pri="ngModel" [ngModelOptions]="{standalone: true}" required name="frais"
+            style="width: 100%" />
+        <div class="text-danger" *ngIf="pri.touched || reservForm.submitted">
+            <div *ngIf="pri.invalid">
+                Veuillez saisir un frais
+            </div>
+        </div>
+        <!-- 
+        <label class="e-textlabel fw-700 mt-3">Jusqu'à</label>
+        <ejs-datetimepicker required [(ngModel)]="resMobile.EndTime" [ngModelOptions]="{standalone: true}"
+            locale='fr-CH' class="e-field mb-3" data-name="EndTime">
+        </ejs-datetimepicker> 
+        -->
+
+
+        <div class="form-group mb-3">
+            <label class="e-textlabel fw-700 mt-3">A partir de</label>
+            <app-date-picker (valueChange)="startTimeHasChanged($event)" [timeChoosed]="resMobile.StartTime" ></app-date-picker>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="e-textlabel fw-700 mt-3">Jusqu'à</label>
+            <app-date-picker [timeChoosed]="resMobile.EndTime" ></app-date-picker>
+        </div>
+
+        <div class="text-danger" *ngIf="already">
+            Terrain indisponible à cette heure
+        </div>
+
+        <div class="mt-2" style="display: flex; width: 100%">
+            <div style="margin: 0 auto;"></div>
+            <div>
+                <button class="btn btn-lg btn-shadow btn-danger" (click)="closeModal()"> Annuler
+                </button>
+            </div>
+            <div style="margin: 0 auto;"></div>
+            <div>
+                <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+                    [isDisabled]="buttonDisabled || reservForm.invalid" (click)="onSubmit()">
+                    <span>Créer</span>
+                </app-state-button>
+            </div>
+            <div style="margin: 0 auto;"></div>
+        </div>
+    </form>
+</div>
+
+
+
+
+<div *ngIf="isMobile" id="create-terrain-mobile" style="display: none;">
+    <h1 class="text-center" *ngIf="!isUpdating"> Créer un nouveau terrain </h1>
+    <h1 class="text-center" *ngIf="isUpdating"> Modifier terrain </h1>
+
+    <form #createForm="ngForm" novalidate (ngSubmit)="updateTerrain()">
+        <label class="form-group has-float-label">
+            <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required #titre="ngModel" name="nom"
+                [(ngModel)]="terrain.name" />
+            <span style="font-size: 100% !important;">Nom du terrain</span>
+            <div *ngIf="!titre.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+        </label>
+        <label class="form-group has-float-label">
+            <textarea class="form-control" style="padding: .8rem; font-size: 1.1rem" required #addres="ngModel"
+                name="address" [(ngModel)]="terrain.address"></textarea>
+            <span style="font-size: 100% !important;">Adresse</span>
+            <div *ngIf="!addres.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+        </label>
+
+
+
+        <div class="pb-1 pt-2">
+            <p class="text-black mb-2">Durée d'un match</p>
+            <div class="d-flex flex-row justify-content-between mb-3">
+                <a (click)="minusMin()" class="duration-button"> - </a>
+                <span style="margin-top: auto; margin-bottom: auto;"> {{ terrain.duration }} min </span>
+                <a (click)="addMin()" class="duration-button"> + </a>
+            </div>
+        </div>
+
+        <div class="pb-4 pt-2">
+            <p class="text-black mb-2">Choisir un couleur pour ce terrain</p>
+            <div class="d-flex flex-row justify-content-between mb-3">
+                <a *ngFor="let color of colors" (click)="choose(color)" class="color-palette"
+                    [ngClass]="{ 'active-color' : terrain.color == color }">
+                    <div class="inner-color" [ngStyle]="{ 'background-color' : color }"> </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <button type="button" class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler </button>
+            <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+                [isDisabled]="buttonDisabled || createForm.invalid" click="updateTerrain()">
+                <span>Modifier</span>
+            </app-state-button>
+        </div>
+    </form>
+
+    <simple-notifications></simple-notifications>
+
+</div>

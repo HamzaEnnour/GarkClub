@@ -1,0 +1,104 @@
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
+
+.datatable-header-inner {
+  font-size: 1rem;
+}
+
+.datatable-body-cell-label {
+  font-size: 1rem;
+}
+.card-body {
+  i::before {
+    font-size: 32px;
+    margin-left: 0px !important;
+    vertical-align: bottom;
+  }
+}
+
+.flaticon-setting-lines::before {
+  font-size: 21px !important;
+}
+
+.input-group-text {
+  padding: 0 !important;
+}
+.btn-search {
+  padding: 0.5rem !important;
+}
+
+.btn-filter {
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  position: relative;
+}
+.btn-filter-success {
+  background-color: #b3b1b1;
+  color: #fff;
+}
+.badge-filter {
+  background-color: #cccccc;
+  border-radius: 10px;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 10px;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.radius-filter-0 {
+  border-radius: 50% !important;
+}
+span.badge-filter-dark {
+  background: #cccccc !important ;
+}
+.badge-filter.badge-filter-corner {
+  color: #ffffff !important;
+  position: absolute !important;
+  right: -6px !important;
+  top: -8px !important;
+}
+
+.ngx-datatable.material {
+  // background: #fff;
+  box-shadow: none;
+}
+
+#data-table {
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .fs-8 {
+    font-size: 0.8rem;
+  }
+}
+
+.alert{
+  margin: 10px 20px;
+}
+
+.imgs {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}

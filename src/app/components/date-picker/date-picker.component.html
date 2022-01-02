@@ -1,0 +1,12 @@
+<div class="input-group">
+    <input class="form-control" [ngModelOptions]="{standalone: true}" (ngModelChange)="TimeHasChanged($event)"
+        [(ngModel)]="timeChoosed" [owlDateTime]="dt1">
+    <owl-date-time [hour12Timer]="picker24Hours" [stepMinute]="stepsMinutes" #dt1></owl-date-time>
+    <div class="input-group-append">
+        <span class="input-group-text">
+            <span class="trigger" [owlDateTimeTrigger]="dt1">
+                <i class="flaticon-calendar"></i>
+            </span>
+        </span>
+    </div>
+</div>

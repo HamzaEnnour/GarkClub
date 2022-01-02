@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12">
+        <app-heading [title]="'Tableau de bord'" ></app-heading>
+        <app-breadcrumb></app-breadcrumb>
+        <div class="separator mb-5"></div>
+    </div>
+</div> 
+<div>
+    <div class="container">
+    <div class="row">
+        <div class="col">
+            <app-profile-statuses></app-profile-statuses>
+        </div>
+        <div class="col-8">
+                <!-- <app-equipment></app-equipment> -->
+                <app-icon-cards-carousel></app-icon-cards-carousel>
+        </div>   
+    </div>
+</div>
+
+    <app-sortable-statistics-row [type]="'stats'" ></app-sortable-statistics-row>
+    <app-sortable-statistics-row [type]="'money'" ></app-sortable-statistics-row>
+</div>

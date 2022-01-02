@@ -1,0 +1,77 @@
+<div *ngIf="players == undefined || players == null || players?.length == 0">
+    <div class="alert alert-secondary" role="alert">
+    <p>Aucun joueur appartient à ce groupe</p>
+  </div>
+  </div>
+  
+
+  <div *ngIf="players && players?.length > 0">
+  <!-- <div class="input-group mb-3" style="padding-left: 1.5rem; padding-right: 1.5rem">
+      <input type="text" class="form-control" #search id="search" placeholder="Chercher ..." aria-label="Chercher"
+        aria-describedby="search-addon">
+  </div> -->
+  
+  <div class="container" *ngIf="!isMobile">
+  
+    <div class="row">
+      <div class="col-md-4" *ngFor="let user of players">
+        <!-- <div class="card user-card" [ngStyle]="{'border-top': '3px solid' + groupsList[0]?.color}"> -->
+        <div class="card user-card">
+          <!-- <div class="ribbon-wrapper">
+            <div class="ribbon blue">Joueur</div>
+        </div> -->
+          <div class="card-block">
+            <div *ngIf="user?.player?.picture" class="user-image">
+              <img [src]="user?.player?.picture" class="img-radius" alt="User-Profile-Image">
+            </div>
+
+            <div *ngIf="!user?.player?.picture" class="user-image">
+              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
+            </div>
+
+            <h6 class="f-w-600 m-t-25 m-b-10 text-nowrap">
+                    {{user?.player?.firstName | uppercase }} {{user?.player?.lastName | uppercase}}
+                  </h6>
+                  <p class="text-muted">Active | {{user?.player?.gender }}</p>
+                  <p class="text-muted">{{user?.player?.email }}</p>
+            <hr>
+            <p class="text-muted m-t-15">Score: {{user?.playerReview?.mean}}%</p>
+            <ul class="list-unstyled activity-leval">
+              <li [ngClass]="{'active': user?.playerReview?.mean > 0}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 20}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 40}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 60}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 80}"></li>
+            </ul>
+            <!-- <div class="counter-block m-t-10 p-20" [ngStyle]="{'background-color': groupsList[0]?.color}"> -->
+            <!-- <div class="counter-block m-t-10 p-20" [ngStyle]="{'background-color': 'blue'}">
+                      <div class="row">
+                          <div class="col-4">
+                              <i class="fa fa-comment"></i>
+                              <p>1256</p>
+                          </div>
+                          <div class="col-4">
+                              <i class="fa fa-user"></i>
+                              <p>8562</p>
+                          </div>
+                          <div class="col-4">
+                              <i class="fa fa-suitcase"></i>
+                              <p>189</p>
+                          </div>
+                      </div>
+                  </div> -->
+            <div class="row justify-content-center user-social-link">
+              <!-- <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+              <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+              <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div> -->
+            </div>
+            <button type="button" class="btn btn-info rounded-0" (click)="navigateToProfile(user?.player)">profil</button>
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>
+</div>
+  <div class="space"></div>
+
+  <simple-notifications></simple-notifications>

@@ -1,0 +1,241 @@
+<!-- <h1 class="text-center" *ngIf="!update" > Créer un nouveau terrain </h1>
+<h1 class="text-center" *ngIf="update" > Modifier terrain </h1>
+
+<form #createForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required #titre="ngModel" name="nom" [(ngModel)]="terrain.name" />
+        <span  style="font-size: 100% !important;" >Nom du terrain</span>
+        <div *ngIf="!titre.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+    <label class="form-group has-float-label">
+        <textarea class="form-control" style="padding: .8rem; font-size: 1.1rem" required #addres="ngModel" name="address"  [(ngModel)]="terrain.address" ></textarea>
+        <span style="font-size: 100% !important;" >Adresse</span>
+        <div *ngIf="!addres.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+
+    <div class="pb-1 pt-2">
+      <p class="text-black mb-2">Durée d'un match</p>
+      <div class="d-flex flex-row justify-content-between mb-3">
+          <a (click)="minusMin()" class="duration-button"> - </a>
+          <span style="margin-top: auto; margin-bottom: auto;"> {{ terrain.duration }} min </span>
+          <a (click)="addMin()" class="duration-button"> + </a>
+      </div>
+  </div>
+
+    <div class="pb-4 pt-2">
+      <p class="text-black mb-2">Choisir un couleur pour ce terrain</p>
+      <div class="d-flex flex-row justify-content-between mb-3">
+        <a *ngFor="let color of colors"  (click)="choose(color)" class="color-palette" [ngClass]="{ 'active-color' : selectedColor == color }"  >
+          <div class="inner-color" [ngStyle]="{ 'background-color' : color }">  </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()" > Annuler </button>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+          [isDisabled]="buttonDisabled || createForm.invalid" click="onSubmit()">
+          <span *ngIf="!update" >Créer</span>
+          <span *ngIf="update" >Modifier</span>
+        </app-state-button>
+      </div>
+</form>
+
+<simple-notifications></simple-notifications> -->
+
+
+<!-- <form #reservForm="ngForm">
+  <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+      Aller a l'évaluation<br>
+  </h4>
+  <table class="custom-event-editor" width="100%" cellpadding="5">
+      <tbody>
+          <tr>
+              <td class="e-textlabel">Groupe : </td>
+              <td colspan="4">
+                  {{resMobile.Groupe}}
+              </td>
+
+          </tr>
+          <tr>
+              <td class="e-textlabel">Coach:</td>
+              <td colspan="4">
+                {{resMobile.Coach}}
+              </td>
+          </tr>
+          <tr>
+            <td class="e-textlabel">Date:</td>
+            <td colspan="4">
+                {{resMobile.StartDate | date: 'shortDate'}}
+            </td>
+          </tr>
+          <tr>
+            <td class="e-textlabel">A partir de:</td>
+            <td colspan="4">
+                {{resMobile.StartDate | date: 'HH:mm'}}
+            </td>
+          </tr>
+          <tr>
+            <td class="e-textlabel">Jusqu'à:</td>
+            <td colspan="4">
+                {{resMobile.EndDate | date: 'HH:mm'}}
+            </td>
+          </tr>
+      </tbody>
+  </table>
+  <div style="display: flex; width: 100%">
+      <div>
+          <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler
+          </button>
+      </div>
+      <div style="margin: 0 auto;"></div>
+      <div>
+          <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow'" (click)="onSubmit()">
+              <span>Evaluation</span>
+          </app-state-button>
+      </div>
+  </div>
+</form>
+
+<simple-notifications></simple-notifications> -->
+
+
+<form #reservForm="ngForm">
+  <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+      Créer un nouvel évenement <br>
+  </h4>
+  <div class="row">
+    <div class="col">
+      <input class="e-field e-input" required placeholder="Nom"
+                      [ngModelOptions]="{standalone: true}" type="text" id="Name-Mob" name="Name"
+                      [(ngModel)]="resMobile.Name" #nm="ngModel" style="width: 100%" />
+                  <div class="text-danger" *ngIf="nm.dirty && nm.invalid"> Veuillez saisir le nom
+                  </div>
+    </div>
+  </div>
+
+  <div class="row" id="rowInput">
+    <div class="col">
+      <label class="form-group has-float-label">
+      <select class="custom-select" id="selectedItem"
+      name="selectedItem" placeholder='Choisir un Groupe'
+      [(ngModel)]="resMobile.group"
+      (change)="groupHasChanged($event)">
+          <option *ngFor="let item of listGroup"
+          [value]="item?.name">{{item?.name}}</option>
+        </select>
+        <span style="font-size: 100% !important;" >Groupe</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+      <label class="form-group has-float-label">
+      <select class="custom-select" placeholder="Type d'évenement"
+      name="type" placeholder='Choisir un Groupe'
+      [(ngModel)]="resMobile.type"
+      (change)="TypehHasChanged($event)">
+          <option *ngFor="let item of typeList"
+          [value]="item">{{item}}</option>
+        </select>
+        <span style="font-size: 100% !important;" >Type d'évenement</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <label class="form-group has-float-label">
+      <select class="custom-select"
+      name="terrain" placeholder='Choisir un coach'
+      [(ngModel)]="resMobile.coach"
+      (change)="CoachHasChanged($event)">
+          <option *ngFor="let item of nomCoaches"
+          [value]="item">{{item}}</option>
+        </select>
+        <span style="font-size: 100% !important;" >Coaches</span>
+      </label>
+    </div>
+  </div>
+
+  <table class="custom-event-editor" width="100%" cellpadding="5">
+      <tbody>
+          <!-- <tr>
+              <td class="e-textlabel">Nom:</td>
+              <td colspan="4">
+                  <input class="e-field e-input" required placeholder="Nom"
+                      [ngModelOptions]="{standalone: true}" type="text" id="Name-Mob" name="Name"
+                      [(ngModel)]="resMobile.Name" #nm="ngModel" style="width: 100%" />
+                  <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir le nom
+                  </div>
+              </td>
+
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+          </tr>
+          <tr>
+              <td class="e-textlabel">Groupe:</td>
+              <td colspan="4">
+                  <ejs-dropdownlist class="e-field" data-name="terrain" placeholder='Choisir un Groupe'
+                      [ngModelOptions]="{standalone: true}" (change)="groupHasChanged($event)"
+                      [dataSource]='monGroup' [(ngModel)]='resMobile.group'>
+                  </ejs-dropdownlist>
+              </td>
+          </tr>
+          <tr>
+              <td class="e-textlabel">Type d'évenement:</td>
+              <td colspan="4">
+                  <ejs-dropdownlist class="e-field" data-name="type" placeholder='Type'
+                      [ngModelOptions]="{standalone: true}" (change)="TypehHasChanged($event)"
+                      [dataSource]='typeList' [(ngModel)]='resMobile.type'>
+                  </ejs-dropdownlist>
+              </td>
+          </tr> 
+          <tr *ngIf="showCoachList">
+              <td class="e-textlabel">Coachs:</td>
+              <td colspan="4">
+                  <ejs-dropdownlist class="e-field" data-name="terrain" placeholder='Choisir un coach'
+                      [ngModelOptions]="{standalone: true}" (change)="CoachHasChanged($event)"
+                      [dataSource]='nomCoaches' [(ngModel)]='resMobile.coach'>
+                  </ejs-dropdownlist>
+              </td>
+          </tr>-->
+          <tr>
+              <td class="e-textlabel">A partir de</td>
+              <td colspan="4">
+                      <app-date-picker (valueChange)="startTimeHasChanged($event)" [timeChoosed]="resMobile.StartTime" ></app-date-picker>
+              </td>
+          </tr>
+          <tr>
+              <td class="e-textlabel">Jusqu'à</td>
+              <td colspan="4">
+                  <app-date-picker [timeChoosed]="resMobile.EndTime" ></app-date-picker>
+              </td>
+          </tr>
+
+
+      </tbody>
+  </table>
+  <div class="text-danger" *ngIf="already">
+      Terrain indisponible à cette heure
+  </div>
+  <div style="display: flex; width: 100%">
+      <div>
+          <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler
+          </button>
+      </div>
+      <div style="margin: 0 auto;"></div>
+      <div>
+          <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow'" [currentState]="buttonState"
+              [isDisabled]="buttonDisabled || reservForm.invalid" (click)="onSubmit()">
+              <span>Créer</span>
+          </app-state-button>
+      </div>
+  </div>
+</form>
+
+<simple-notifications></simple-notifications>

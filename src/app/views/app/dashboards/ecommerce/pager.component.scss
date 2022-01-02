@@ -1,0 +1,26 @@
+
+.ngx-datatable.material .datatable-footer .datatable-pager a {
+    width: 34px;
+    height: 34px;
+}
+
+.ngx-datatable.material .datatable-footer .datatable-pager li a {
+    padding: 5px;
+}
+
+.disabled{
+    background: transparent !important;
+}
+.ngx-datatable *, .ngx-datatable :after, .ngx-datatable :before {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media(max-width: 576px){
+
+    .ngx-datatable.material .datatable-footer .datatable-pager li a {
+        padding: 5px;
+    }
+   
+}

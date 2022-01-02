@@ -1,0 +1,41 @@
+<h1 class="text-center"> Ajouter un Abonnement </h1>
+
+<form #createForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <label class="form-group has-float-label">
+        <!-- <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required #des="ngModel" name="designation"
+            [(ngModel)]="finance.label" /> -->
+            <!-- <ejs-autocomplete *ngIf="flag" id='ddlelement' #samples [dataSource]='searchData' 
+            [fields]='fields' [placeholder]='text'
+            [itemTemplate]="itemTemplate" (select)="onFiltering($event)"></ejs-autocomplete>  -->
+        <span style="font-size: 100% !important;">Joueur</span>
+        <!-- <div *ngIf="!des.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div> -->
+    </label>
+    <label class="form-group has-float-label">
+        <input type="number" class="form-control" style="padding: .8rem; font-size: 1.1rem" required #price="ngModel" name="prix"
+            [(ngModel)]="finance.frais" />
+        <span style="font-size: 100% !important;">Frais</span>
+        <div *ngIf="!price.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+    <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" type="date" required #dt="ngModel" name="datedebut"
+            [(ngModel)]="finance.StartTime" [value]='datedebut' />
+        <span style="font-size: 100% !important;">Date début</span>
+        <div *ngIf="!dt.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+    <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" type="date" required #dt="ngModel" name="datefin"
+            [(ngModel)]="finance.EndTime" [value]='datefin' />
+        <span style="font-size: 100% !important;">Date fin</span>
+        <div *ngIf="!dt.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+    <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler </button>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+            [isDisabled]="buttonDisabled || createForm.invalid" click="onSubmit()">
+            <span *ngIf="!update">Créer</span>
+            <span *ngIf="update">Modifier</span>
+        </app-state-button>
+    </div>
+</form>
+
+<simple-notifications></simple-notifications>

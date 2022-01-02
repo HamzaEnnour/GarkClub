@@ -1,0 +1,32 @@
+  .row {
+    margin: 10px;
+  }
+  
+  timepicker{
+    margin: 20px 0px;
+  }
+  
+  .color-palette{
+    width: 31px;
+    height: 31px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .active-color{
+    border: 2px solid black;
+    padding-top: 1px;
+  }
+  
+  .inner-color{
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+  }
+  
+  .color-palette:hover{
+    border: 2px solid #cccccc;
+    padding-top: 1px;
+  }

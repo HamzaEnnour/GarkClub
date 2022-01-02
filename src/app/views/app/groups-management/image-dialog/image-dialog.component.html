@@ -1,0 +1,65 @@
+<!-- 
+<div>
+    <tabset>
+      <tab heading="Galerie" id="tab1">
+        <div >
+            <h2> Choisir à partir de la galerie </h2>
+            <div class="container" style="height: 50vh;">
+                <div style="display: flex; flex-wrap: wrap;" >
+                    <div *ngFor="let img of images; let i = index"  (click)="selectedImage(i)"  class="content" [id]="'img-selected-'+i">
+                        <div class="overlay-image" style="width: calc(100%);" >  
+                            <button mat-mini-fab class="fab-button-overlay" >
+                                <mat-icon>check_circle_outline</mat-icon>
+                              </button>
+                        </div>
+                        <img style="width: calc(100%); margin: 2px;" (click)="selectedImage(i)"  [src]="img.src" alt="">
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="flex">
+                <div><button mat-raised-button class="btn btn-gradiant" (click)="saveImageSelect()" [disabled]="noSelection" > Sauvgarder </button></div>
+                <div class="spacer"></div>
+                <div><button mat-raised-button class="btn btn-danger" (click)="onCancel()"> Annuler </button></div>
+            </div>
+        </div>
+      </tab>
+      <tab heading="Importer">
+        <div>
+            <h2> Importer une image </h2>
+            <div class="import" style="height: 50vh;">
+                <form id="file-upload-form" class="uploader">
+                    <input id="file-upload" type="file" name="fileUpload" (change)="fileSelectHandler($event)" accept="image/*" />
+                  
+                    <label for="file-upload" id="file-drag" style="overflow-y: auto; overflow-x: hidden;">
+                        <div class="overlay">
+                            <mat-icon class="cancel-button hidden" id="cancelBtn" (click)="cancelImage()" >cancel</mat-icon>
+                            <img id="file-image" src="#" alt="Preview" class="hidden">
+                            <br>
+                            <button [disabled]="uploadPercent>0"  type="button" id="uploadBtn" class="btn btn-gradiant btn-small hidden" (click)="uploadFile()">Enregistrer</button>
+                          </div>
+                          <div id="start"> 
+                            <mat-icon style="font-size: 50px; width: unset; height: unset;">cloud_download</mat-icon>
+                            <div>Selectionner une image</div>
+                            <div id="notimage" class="hidden">Veuillez selectionner une image</div>
+                            <div id="bad-res" class="hidden">Veuillez selectionner une image 16:9</div>
+                        <span id="file-upload-btn" class="btn btn-gradiant">Choisir une image</span>
+                      </div>
+                      <div id="response" class="hidden">
+                        <div id="messages"></div>
+        
+                        <progressbar max="100" [value]="uploadPercent" type="success" style="height: 20px;" [striped]="true" [animate]="true"><i>{{ uploadPercent }}  / 100</i></progressbar>
+        
+                      </div>
+                    </label>
+                  </form>
+            </div>
+        </div>
+        
+      </tab>
+    </tabset>
+  </div>
+
+
+<simple-notifications></simple-notifications>
+ -->

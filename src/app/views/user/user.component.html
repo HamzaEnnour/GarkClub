@@ -1,0 +1,16 @@
+<div class="h-100">
+  <div class="fixed-background"></div>
+  <button mat-mini-fab class="mr-5" (click)="backHome()" id="fixedTop" style="background-color: white !important; color: black;padding-top: 0; ">
+    <mat-icon style="padding: 0px 6px !important"> arrow_back_ios</mat-icon>
+    <!-- <span style="font-size: 26px; line-height: 1px; vertical-align: baseline;">&lt;</span> -->
+  </button>
+  <main>
+    <div class="container">
+      <div class="row h-100">
+        <div class="col-12 col-md-10 mx-auto my-auto">
+          <router-outlet></router-outlet>
+        </div>
+      </div> 
+    </div>
+  </main>
+</div>

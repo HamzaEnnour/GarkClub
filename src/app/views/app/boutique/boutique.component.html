@@ -1,0 +1,106 @@
+<div id="normal-view">
+  <div id="fixedbutton">
+    <button mat-fab
+    (click)="createNew()" class="btn btn-gradiant"
+        matTooltip="Ajouter un nouveau terrain"
+        matTooltipPosition="left"
+        matTooltipHideDelay="800">
+        <mat-icon>add</mat-icon>
+      </button>
+</div>
+<div class="container">
+  <div class="row" [ngStyle]="{'padding-bottom' : isMobile ? '120px' : '100px'}">
+    <div class="col-md-12" *ngIf="loading" >
+      <p> Chargement ... </p>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 mb-3" *ngFor="let terrain of mesTerrains; let i = index">
+      <div class="my-card" >
+          <div (click)=open(terrain)  [ngStyle]="{ 'background-image' : 'url(' + terrain.image + ')'}" [id]="'img-'+i" class="image-card pointer"  >
+          </div>
+        <div style="cursor: pointer; padding: 10px;">
+          <div class="flex">
+            <p class="h4 "  (click)=open(terrain)>
+              <b>Nom : </b> {{ terrain.name }}
+            </p>
+            <div class="spacer"></div>
+            <button mat-mini-fab style="color: #3ab763;" class="fab-button-overlay mr-2" [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button (click)="open(terrain)" mat-menu-item>
+                <mat-icon>visibility</mat-icon>
+                <span>Ouvrir</span>
+              </button>
+              <button (click)="update(terrain)" mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Modifier</span>
+              </button>
+              <button (click)="delete(terrain)" mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Supprimer</span>
+              </button>
+             
+            </mat-menu>
+          </div>
+          <p  (click)=open(terrain)>
+            <mat-icon style="vertical-align: bottom;" >location_on</mat-icon> <b>Addresse : </b> {{ terrain.address }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<div *ngIf="isMobile" id="create-terrain-mobile"  style="display: none; padding-bottom: 120px;"  >
+  <h1 class="text-center" *ngIf="!isUpdating" > Créer un nouveau terrain </h1>
+  <h1 class="text-center" *ngIf="isUpdating" > Modifier terrain </h1>
+  
+  <form #createForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+      <label class="form-group has-float-label">
+          <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required #titre="ngModel" name="nom" [(ngModel)]="terrain.name" />
+          <span  style="font-size: 100% !important;" >Nom du terrain</span>
+          <div *ngIf="!titre.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+      </label>
+      <label class="form-group has-float-label">
+          <textarea class="form-control" style="padding: .8rem; font-size: 1.1rem" required #addres="ngModel" name="address"  [(ngModel)]="terrain.address" ></textarea>
+          <span style="font-size: 100% !important;" >Adresse</span>
+          <div *ngIf="!addres.valid && createForm.submitted" class="invalid-tooltip">Champ requis!</div>
+      </label>
+
+     
+  
+      <div class="pb-1 pt-2">
+        <p class="text-black mb-2">Durée d'un match</p>
+        <div class="d-flex flex-row justify-content-between mb-3">
+          <a (click)="minusMin()" class="duration-button"> - </a>
+          <span style="margin-top: auto; margin-bottom: auto;"> {{ terrain.duration }} min </span>
+          <a (click)="addMin()" class="duration-button"> + </a>
+        </div>
+      </div>
+
+      <div class="pb-4 pt-2">
+        <p class="text-black mb-2">Choisir un couleur pour ce terrain</p>
+        <div class="d-flex flex-row justify-content-between mb-3">
+          <a *ngFor="let color of colors"  (click)="choose(color)" class="color-palette" [ngClass]="{ 'active-color' : selectedColor == color }"  >
+            <div class="inner-color" [ngStyle]="{ 'background-color' : color }">  </div>
+          </a>
+        </div>
+      </div>
+  
+      <div class="d-flex justify-content-between align-items-center">
+          <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()" > Annuler </button>
+          <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+            [isDisabled]="buttonDisabled || createForm.invalid" click="onSubmit()">
+            <span *ngIf="!isUpdating" >Créer</span>
+            <span *ngIf="isUpdating" >Modifier</span>
+          </app-state-button>
+        </div>
+  </form>
+  
+  <simple-notifications></simple-notifications>
+  
+</div>

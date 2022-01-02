@@ -1,0 +1,100 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 28/11/2020 20:23
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-soccer-field:before { content: "\f100"; }
+.flaticon-diagram:before { content: "\f101"; }
+.flaticon-calendar:before { content: "\f102"; }
+.flaticon-money-bag:before { content: "\f103"; }
+.flaticon-accounting:before { content: "\f104"; }
+.flaticon-setting-lines:before { content: "\f105"; }
+.flaticon-user:before { content: "\f106"; }
+.flaticon-user-1:before { content: "\f107"; }
+.flaticon-profile-user:before { content: "\f108"; }
+.flaticon-logout:before { content: "\f109"; }
+.flaticon-clipboard:before { content: "\f10a"; }
+.flaticon-money:before { content: "\f10b"; }
+.flaticon-money-1:before { content: "\f10c"; }
+.flaticon-money-2:before { content: "\f10d"; }
+.flaticon-football-field:before { content: "\f10e"; }
+.flaticon-speedometer:before { content: "\f10f"; }
+.flaticon-speedometer-1:before { content: "\f110"; }
+.flaticon-speedometer-2:before { content: "\f111"; }
+
+
+@font-face {
+  font-family: "flaticon1";
+  src: url("./flaticon1.ttf?e736516b0a403a989371a62df2d31585") format("truetype"),
+url("./flaticon1.woff?e736516b0a403a989371a62df2d31585") format("woff"),
+url("./flaticon1.woff2?e736516b0a403a989371a62df2d31585") format("woff2"),
+url("./flaticon1.eot?e736516b0a403a989371a62df2d31585#iefix") format("embedded-opentype"),
+url("./flaticon1.svg?e736516b0a403a989371a62df2d31585#flaticon1") format("svg");
+}
+
+i[class^="flaticon1-"]:before, i[class*=" flaticon1-"]:before {
+  font-family: flaticon1 !important;
+  font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+
+.flaticon1-football:before {
+  content: "\f101";
+}
+.flaticon1-strategy:before {
+  content: "\f102";
+}
+.flaticon1-whistle:before {
+  content: "\f103";
+}
+.flaticon1-football-jersey:before {
+  content: "\f104";
+}
+.flaticon1-cupping:before {
+  content: "\f105";
+}
+.flaticon1-uniform:before {
+  content: "\f106";
+}
+.flaticon1-footwear:before {
+  content: "\f107";
+}
+.flaticon1-soccer:before {
+  content: "\f108";
+}
+.flaticon1-soccer-goal:before {
+  content: "\f109";
+}
+.flaticon1-soccer-1:before {
+  content: "\f10a";
+}
+

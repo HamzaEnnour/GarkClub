@@ -1,0 +1,108 @@
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+      <div class="profile-nav col-md-3">
+          <div class="panel">
+              <div class="user-heading round">
+                  <a>
+                    <div class="image-container">
+                      <img *ngIf="currentCoach?.picture" [src]="currentCoach?.picture" alt="">
+                      <img *ngIf="!currentCoach?.picture" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                      <div class="">
+                        <div class="text">
+                            <!-- <button mat-fab class="mat-f">
+                                <mat-icon class="camera">photo_camera</mat-icon>
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+                  </a>
+              
+                  <h1>{{currentCoach?.firstName}} {{currentCoach?.lastName}}</h1>
+                  <p>{{currentCoach?.email}}</p>
+              </div>
+    
+              <ul class="nav flex-column nav-pills nav-stacked">
+                  <li style="cursor: pointer;" [ngClass]="{'active': selectedMenu =='profile'}" (click)="chnageActive('profile')"><a> <i class="fa fa-user"></i> Profile</a></li>
+                  <!-- <li style="cursor: pointer;" [ngClass]="{'active': selectedMenu =='profile1'}" (click)="chnageActive('profile1')"><a> <i class="fa fa-edit"></i> Edit profile</a></li> -->
+                  <!-- <li style="cursor: pointer;" [ngClass]="{'active': selectedMenu =='profile2'}" (click)="chnageActive('profile2')"><a> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-warning pull-right r-activity">9</span></a></li> -->
+                  <li style="cursor: pointer;" (click)="navigateToDashboard()"><a> <i class="fa fa-arrow-left"></i> Tableau de bord </a></li>
+                  
+              </ul>
+          </div>
+      </div>
+      <div class="profile-info col-md-9">
+          <div class="panel">
+              <!-- <div class="bio-graph-heading">
+                  Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna metus.
+              </div> -->
+              <div class="panel-body bio-graph-info" *ngIf="selectedMenu =='profile'">
+                  <h1>Informations</h1>
+                  <div class="row">
+                      <div class="bio-row">
+                          <p><span>Nom </span>: {{currentCoach?.lastName}}</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Prénom </span>: {{currentCoach?.firstName}}</p>
+                      </div>
+                      <!-- <div class="bio-row">
+                          <p><span>Country </span>: Australia</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Birthday</span>: 13 July 1983</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Occupation </span>: UI Designer</p>
+                      </div> -->
+                      <div class="bio-row">
+                          <p><span>Email </span>: {{currentCoach?.email}}</p>
+                      </div>
+                      <!-- <div class="bio-row">
+                          <p><span>Mobile </span>: (12) 03 4567890</p>
+                      </div>
+                      <div class="bio-row">
+                          <p><span>Phone </span>: 88 (02) 123456</p>
+                      </div> -->
+                  </div>
+                  <h1>Evaluation du coach</h1>
+                  <div class="text-center">
+                  
+                    <div class="row">
+                        <div class="col">
+                            <div *ngIf="flagReview">
+                                <mat-star-rating [rating]="noteCoach"  [starCount]="starCount" [color]="starColor" 
+                                [visiblity]="false"
+                                ></mat-star-rating>
+                                <p>Vous avez déja evaluer votre coach. ({{noteCoach}}/{{starCount}})</p>
+                                <!-- <button type="button">Réevaluer</button> -->
+                            </div>
+                            <div *ngIf="!flagReview">
+                            <mat-star-rating [rating]="rating"  [starCount]="starCount" [color]="starColor" 
+                            [visiblity]="true"
+                            (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+                            <button type="button" class="btn btn-info rounded-0" (click)="rateCoach()">Evaluer</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+              </div>
+    
+    
+              <div *ngIf="selectedMenu =='profile1'">
+                <p>profile1</p>
+              </div>
+    
+              <div *ngIf="selectedMenu =='profile2'">
+                <p>profile2</p>
+            </div>
+    
+    
+          </div>
+          <div>     
+          </div>
+      </div>
+    </div>
+    </div>
+
+    <simple-notifications></simple-notifications>

@@ -1,0 +1,278 @@
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+      <div class="profile-nav col-md-3" style="min-width: 200px; height: 340px; cursor: pointer;">
+          <div class="panel">
+              <div class="user-heading round" (click)="fileSelect.click()">
+                  <a>
+                    <div class="image-container">
+                      <img *ngIf="this.player?.picture" [src]="imageSrc" alt="profile-player">
+                      <img *ngIf="!this.player?.picture" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="profile-player">
+                      <div class="fixed-overlay" *ngIf="!isImageUploadLoading && show" (click)="fileSelect.click()">
+                        <div class="text">
+                            <!-- <button mat-fab class="mat-f">
+                                <mat-icon class="camera">photo_camera</mat-icon>
+                            </button> -->
+                        </div>
+                    </div>
+                    <div class="fixed-overlay" *ngIf="isImageUploadLoading">
+                        <div class="lds-roller">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                  </a>
+                  <div style="margin-top: 40px;">
+                    <h1>{{player?.firstName}} {{player?.lastName}}</h1>
+                  <p>{{player?.email}}</p>
+                  </div>
+
+                  
+                  
+              </div>
+    
+              <ul class="nav flex-column nav-pills nav-stacked">
+                  <li style="cursor: pointer;" [ngClass]="{'active': selectedMenu =='profile'}" (click)="chnageActive('profile')"><a> <i class="fa fa-user"></i> Profile</a></li>
+                  <li style="cursor: pointer;" [ngClass]="{'active': selectedMenu =='profile1'}" (click)="chnageActive('profile1')"><a> <i class="fa fa-edit"></i> Abonnement</a></li>
+                  <!-- <li style="cursor: pointer;" [ngClass]="{'active': selectedMenu =='profile2'}" (click)="chnageActive('profile2')"><a> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-warning pull-right r-activity">9</span></a></li> -->
+                  <!-- <li style="cursor: pointer;" (click)="navigateToPlayerList()"><a> <i class="fa fa-arrow-left"></i> Liste des Joueurs</a></li> -->
+                  
+              </ul>
+          </div>
+      </div>
+      <div class="profile-info col-md-9" style="height: 670px;">
+          <div class="panel">
+              <div class="panel-body bio-graph-info" *ngIf="selectedMenu =='profile'">
+                <div class="container-fluid flex-container space-between row">
+                    <div class="flex-item">
+                        <h1 *ngIf="!editMode">Informations</h1>
+                        <h1 *ngIf="editMode">Modifier Informations</h1>
+                    </div>
+                    <div class="flex-item">
+                        <i (click)="editInfo()" id="update-btn" class="flaticon-setting-lines mr-3"></i>
+                    </div>
+                </div>
+                  <div class="row" *ngIf="!editMode">
+                      <div class="bio-row">
+                          <p *ngIf="player?.lastName"><span>Nom </span>: {{player?.lastName}}</p>
+                          <p *ngIf="!player?.lastName"><span>Nom </span>: ----</p>
+                      </div>
+                      <div class="bio-row">
+                          <p *ngIf="player?.firstName"><span>Prénom </span>: {{player?.firstName}}</p>
+                          <p *ngIf="!player?.firstName"><span>Prénom </span>: -----</p>
+                      </div>
+                      <div class="bio-row">
+                          <p *ngIf="player?.age"><span>Age </span>: {{player?.age}}</p>
+                          <p *ngIf="!player?.age"><span>Age </span>: --</p>
+                      </div>
+                      <div class="bio-row">
+                          <p *ngIf="player?.height"><span>Taille </span>: {{player?.height}} cm</p>
+                          <p *ngIf="!player?.height"><span>Taille </span>:---</p>
+                      </div>
+                      <div class="bio-row">
+                          <p *ngIf="player?.weight"><span>Poids </span>:{{player?.weight}} Kg</p>
+                          <p *ngIf="!player?.weight"><span>Poids </span>: ---</p>
+                      </div>
+                      <div class="bio-row">
+                          <p *ngIf="player?.shirtNumber"><span>Numéro du maillot </span>: {{player?.shirtNumber}}</p>
+                          <p *ngIf="!player?.shirtNumber"><span>Numéro du maillot </span>: --</p>
+                      </div>
+                      <div class="bio-row">
+                          <p *ngIf="player?.Team"><span>Equipe préférée </span>: {{player?.Team}}</p>
+                          <p *ngIf="!player?.Team"><span>Equipe préférée </span>: --</p>
+                      </div>
+                      <div class="bio-row">
+                          <p *ngIf="player?.rightFooted == true"><span>Pied </span>: Droitier</p>
+                          <p *ngIf="player?.rightFooted == false"><span>Pied </span>: Gaucher</p>
+                          <p *ngIf="player?.rightFooted == null"><span>Pied </span>: --</p>
+                      </div>
+                  </div>
+              </div>    
+          </div>
+
+
+          <div class="panel">
+              <div class="panel-body bio-graph-info" *ngIf="selectedMenu =='profile'">
+                  <div class="row" *ngIf="editMode && player">
+                    <form #update="ngForm" (ngSubmit)="updatePlayer(update)">
+                      <div class="bio-row">
+                        <label class="form-group has-float-label">
+                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                required #lastName="ngModel" name="lastName" type="text"
+                                [(ngModel)]="player.lastName" />
+                            <span style="font-size: 100% !important; ">Nom: </span>
+                        </label>
+                      </div>
+
+                      <div class="bio-row">
+                          <label class="form-group has-float-label">
+                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                required #firstName="ngModel" name="firstName" type="text"
+                                [(ngModel)]="player.firstName" />
+                            <span style="font-size: 100% !important;">Prénom: </span>
+                        </label>
+                      </div>
+
+
+                      <div class="bio-row">
+                          <label class="form-group has-float-label">
+                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                required #age="ngModel" name="age" type="number"
+                                [(ngModel)]="player.age" />
+                            <span style="font-size: 100% !important;">Age: </span>
+                        </label>
+                      </div>
+
+
+                      <div class="bio-row">
+                          <label class="form-group has-float-label">
+                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                required #height="ngModel" name="height" type="text"
+                                [(ngModel)]="player.height" />
+                            <span style="font-size: 100% !important;">Taille: </span>
+                        </label>
+                      </div>
+
+
+                      <div class="bio-row">
+                          <label class="form-group has-float-label">
+                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                required #weight="ngModel" name="weight" type="text"
+                                [(ngModel)]="player.weight" />
+                            <span style="font-size: 100% !important;">Poids: </span>
+                        </label>
+                      </div>
+
+
+                      <div class="bio-row">
+                          <label class="form-group has-float-label">
+                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                required #shirtNumber="ngModel" name="shirtNumber" type="text"
+                                [(ngModel)]="player.shirtNumber" />
+                            <span style="font-size: 100% !important;">T-shirt: </span>
+                        </label>
+                      </div>
+
+
+                      <div class="bio-row">
+                          <label class="form-group has-float-label">
+                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                required #Team="ngModel" name="Team" type="text"
+                                [(ngModel)]="player.Team" />
+                            <span style="font-size: 100% !important;">Equipe: </span>
+                        </label>
+                      </div>
+
+
+                      <div class="bio-row">
+                          <!-- <p *ngIf="player?.rightFooted == true"><span>Pied </span>: Droitier</p>
+                          <p *ngIf="player?.rightFooted == false"><span>Pied </span>: Gaucher</p>
+                          <p *ngIf="player?.rightFooted == null"><span>Pied </span>: --</p> -->
+                          <input class="form-check-input" type="checkbox" 
+                          style="margin-left: 80px;" name="rightFooted"
+                          [(ngModel)]="player.rightFooted" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            Pied droit ?
+                          </label>
+                      </div>
+                      <div class="bio-row" style="display: flex;">
+                        <div style="margin: 0 auto;"></div>
+                        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'"
+                            [currentState]="buttonState" [isDisabled]="buttonDisabled">
+                            Mettre à jour
+                        </app-state-button>
+                    </div>
+
+                    </form>
+                  </div>
+              </div>
+    
+    
+              <div *ngIf="selectedMenu =='profile1'">
+                <div class="panel" style="background-color: #e7e7e7;padding: 20px; margin: 20px;">
+                <p>Abonnement</p>
+
+                <form *ngIf="player && !status" #createForm="ngForm" (ngSubmit)="Payer()">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-group has-float-label">
+                                <input class="form-control"
+                                    style="padding: .8rem; font-size: 1.1rem" required
+                                    #fee="ngModel" name="fee"
+                                    [(ngModel)]="frais" />
+                                <span style="font-size: 100% !important;">Frais</span>
+                                <div *ngIf="!fee.valid && createForm.submitted"
+                                    class="invalid-tooltip">Champ
+                                    requis!</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <!-- <label class="form-group has-float-label">
+                                <input class="form-control"
+                                    style="padding: .8rem; font-size: 1.1rem" required
+                                    #debut="ngModel" type="text" name="debut" id="debut"
+                                    [(ngModel)]="startTime" />
+                                <span style="font-size: 100% !important;">Début:</span>
+                                <div *ngIf="!debut.valid && createForm.submitted"
+                                    class="invalid-tooltip">
+                                    Champ
+                                    requis!</div>
+                            </label> -->
+                            <span style="font-size: 100% !important;">Début:</span>
+                            <app-date-picker (valueChange)="startTimeHasChanged($event)" [timeChoosed]="startTime" ></app-date-picker>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- <label class="form-group has-float-label">
+                                <input class="form-control"
+                                    style="padding: .8rem; font-size: 1.1rem" type="text"
+                                    name="fin" #fin="ngModel"
+                                    [(ngModel)]="endTime" />
+                                <span style="font-size: 100% !important;">Jusqu'à:</span>
+                            </label> -->
+                            <span style="font-size: 100% !important;">Jusqu'à:</span>
+                            <app-date-picker (valueChange)="endTimeHasChanged($event)" [timeChoosed]="endTime" ></app-date-picker>
+                        </div>
+                    </div>
+
+                    <div style="display: flex;">
+                        <div style="margin: 20px auto;"></div>
+                        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'"
+                            [currentState]="buttonState" [isDisabled]="buttonDisabled"
+                            style="margin: 20px;">
+                            Payer
+                        </app-state-button>
+                    </div>
+                </form>
+                <div *ngIf="status">
+                    Abonnement encore valide (Expire le {{expire | date: 'shortDate'}})
+                </div>
+                </div>
+            </div>
+    
+              <div *ngIf="selectedMenu =='profile2'">
+                <p>profile2</p>
+            </div>
+    
+    
+          </div>
+
+
+          <div>     
+          </div>
+      </div>
+    </div>
+    <input type="file" style="display: none;" (change)="imageSelected($event)" accept="image/*" #fileSelect id="">
+    </div>
+
+    <simple-notifications></simple-notifications>

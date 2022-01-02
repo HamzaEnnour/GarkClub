@@ -1,0 +1,12 @@
+<div [class]="class">
+    <div class="row">
+            <div class="col card" style="width: 18rem;" *ngFor="let item of dataSource"> 
+                <div class="card-body">
+                  <p class="card-text text-center font-weight-semibold mb-0">
+                    {{item.category}}
+                    </p>
+                    <p class="lead text-center">{{item.quantity}}</p>
+              </div>
+        </div>
+    </div>
+    </div>

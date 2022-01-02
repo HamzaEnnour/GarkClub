@@ -1,0 +1,170 @@
+@import "./variables";
+body {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+.header {
+  border-radius: 0 0 50px 50px;
+  background: $color-base;
+  height: 160px;
+  margin-bottom: 40px;
+  .titre {
+    color: $color-white;
+    font-weight: 700;
+  }
+  .langSelector,
+  .flow-us {
+    background-color: $color-white;
+    color: $color-base;
+  }
+  .example-header-image {
+    border-color: $color-base;
+  }
+  mat-card-subtitle {
+    color: $color-base;
+  }
+}
+.footer {
+  background: $color-grey-footer;
+}
+.main {
+  width: 90%;
+  margin: auto;
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 0px 21px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 0px 21px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 0px 21px -10px rgba(0, 0, 0, 0.75);
+  margin-bottom: 75px;
+  h2 {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: $color-base;
+    padding-top: 7px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    line-height: 40px;
+  }
+  .sticky {
+    position: fixed;
+    top: 0;
+    background: #fff;
+    width: 100%;
+    padding: 20px 0;
+    padding-left: 5%;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.08);
+    margin-left: -5%;
+    .descriptions {
+      width: 110%;
+      box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
+      margin-left: -5%;
+      padding-left: 30px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      padding-bottom: 10px;
+    }
+    .type {
+      display: inline-block;
+      width: calc(40% - 38px);
+      padding-left: 20px;
+      padding-right: 10px;
+      margin-top: -4px;
+      float: left;
+    }
+    .vins {
+      width: 60%;
+      display: inline-block;
+    }
+    .sizesDiv {
+      width: calc(100% - 20px);
+      margin-top: -2px;
+    }
+  }
+  ul {
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .type {
+    color: $color-base;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+  }
+  .descriptions {
+    display: inline-block;
+    width: 80%;
+    float: left;
+    h3 {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+      text-transform: capitalize;
+    }
+    span {
+      color: $gris-color;
+      font-size: 10px;
+    }
+  }
+  .prix {
+    display: inline-block;
+    width: 20%;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    &.alone {
+      padding-left: calc(85% - 10px);
+      text-align: left;
+      height: auto;
+      line-height: inherit;
+    }
+  }
+  hr {
+    // width: 90%;
+    margin-left: 0;
+    border: none;
+    border-top: 1px solid $gris-color-hr;
+  }
+}
+
+.footer {
+  ul {
+    li {
+      a {
+        color: #000;
+      }
+    }
+  }
+}
+.nosVinsDescriptions {
+  color: $gris-color;
+  font-size: 11px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  line-height: 13px;
+  margin-top: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clear {
+  clear: both;
+}
+
+.mat-bottom-sheet-container.custom {
+  border-radius: 0 0 10px 10px;
+  // background-image: url(../images/bg_pop.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}

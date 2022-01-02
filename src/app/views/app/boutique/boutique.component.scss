@@ -1,0 +1,78 @@
+#fixedbutton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px; 
+    z-index: 1;
+}
+
+@media(max-width : 600px){
+    #fixedbutton {
+        bottom: 100px;
+    }
+}
+
+.my-card{
+    border-radius: 10px;
+}
+
+.fab-button-overlay{
+    position: absolute;
+    right: 0px;
+    background-color: transparent;
+    box-shadow: 0 0 black;
+}
+
+.flex{
+    display: flex;
+}
+
+.img-terrain{
+    cursor: pointer; 
+    max-height: 162px !important; 
+    width: auto !important;
+    display: block;
+    margin: auto;
+}
+
+@media(max-width: 527px){
+    .img-terrain{
+        max-height: unset !important; 
+        width: calc(100% + 32px) !important;
+    }
+}
+
+.my-card{
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+
+.image-card{
+    height: 162px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 371px;
+}
+
+@media(max-width : 375px){
+    .image-card{
+        height: 162px;
+        width: 100%;
+        background-repeat: no-repeat;
+        // background-size: 371px;
+        background-size: 100%;
+        background-position: center;
+    }
+}
+
+@media(max-width : 365px){
+    .image-card{
+        height: 162px;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: 320px;
+    }
+}
+
+
+

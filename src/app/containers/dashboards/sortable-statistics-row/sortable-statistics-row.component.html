@@ -1,0 +1,24 @@
+<div *ngIf="type == 'stats' && !isLoading" [sortablejs]="itemsRow" [sortablejsOptions]="{ handle: '.handle' }">
+
+    <div>
+        <h2> <i class="flaticon-speedometer-2 flat"></i> Seances </h2>
+    </div>
+
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+        <app-radial-process-card [title]="'Aujourd\'hui'" [total]="stats.seances.today*100" [type]="'percent'"
+            [percent]="stats.seances.today" [isSortable]="true">
+        </app-radial-process-card>
+    </div>
+
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+        <app-radial-process-card [title]="'Cette semaine'" [total]="stats.seances.thisWeek*100" [type]="'percent'"
+            [percent]="stats.seances.thisWeek" [isSortable]="true">
+        </app-radial-process-card>
+    </div>
+
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+        <app-radial-process-card [title]="'Ce mois'" [total]="stats.seances.thisMonth*100" [type]="'percent'"
+            [percent]="stats.seances.thisMonth" [isSortable]="true">
+        </app-radial-process-card>
+    </div>
+</div>

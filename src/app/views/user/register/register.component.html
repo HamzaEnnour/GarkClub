@@ -1,0 +1,128 @@
+<div class="card auth-card" >
+  <div class="position-relative image-side ">
+    <p class=" text-white fw-700 h2">GARK</p>
+    <p class="white mb-0 fw-700">
+      Veuillez utiliser le formulaire pour vous inscrire.
+      <br>Si vous êtes membre, veuillez
+      <a routerLink="/football/user/login" class="white white-underline-link">S'identifier</a>.
+    </p>
+  </div>
+  <div class="form-side">
+    <a class="c-pointer">
+      <span class="logo-single"></span>
+    </a>
+    <h3 class="mb-md-4 mb-sm-1">Créer un compte</h3>
+
+    <form #registerForm="ngForm" novalidate (ngSubmit)="onSubmit()" *ngIf="step == 0">
+      <label class="form-group has-float-label">
+        <input class="form-control" required ngModel #displayName="ngModel" [(ngModel)]="firstNameModel"
+          name="firstName" />
+        <span>Prénom</span>
+        <div *ngIf="!displayName.valid && registerForm.submitted" class="invalid-tooltip">Prénom est requis!
+        </div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" required ngModel #disName="ngModel" [(ngModel)]="lastNameModel"
+          name="lastName" />
+        <span>Nom</span>
+        <div *ngIf="!disName.valid && registerForm.submitted" class="invalid-tooltip">Nom est requis!
+        </div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" required email ngModel (keyup)="duplicated = false" #email="ngModel" [(ngModel)]="emailModel" name="email" />
+        <span>E-mail</span>
+        <div *ngIf="!email.valid && registerForm.submitted" class="invalid-tooltip">E-mail est requis!</div>
+        <div *ngIf="email?.errors?.email && registerForm.submitted" class="invalid-tooltip">E-mail doit être une adresse
+          valide!</div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" type="password" placeholder="" [(ngModel)]="passwordModel" required ngModel
+          #password="ngModel" name="password" />
+        <span>Mot de passe</span>
+        <div *ngIf="!password.valid && registerForm.submitted" class="invalid-tooltip">Le mot de passe est requis!</div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" type="password" placeholder="" [(ngModel)]="confirmPasswordModel" required ngModel
+          #confirmPassword="ngModel" name="confirmPassword" />
+        <span>Confirmer votre mot de passe</span>
+        <div *ngIf="!confirmPassword.valid && registerForm.submitted" class="invalid-tooltip">Le mot de passe est requis!</div>
+      </label>
+
+
+
+      <div class="text-danger" *ngIf="duplicated"> E-mail déjà utilisé ! </div>
+
+      <div class="text-danger" *ngIf="errorMessage"> {{errorMessage}} ! </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <a routerLink="/football/user/forgot-password">Mot de pass oublié?</a>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+          [isDisabled]="buttonDisabled" click="onLoginClick()">
+          S'INSCRIRE
+        </app-state-button>
+
+      </div>
+    </form>
+
+    <!-- <form #update="ngForm"  novalidate  (ngSubmit)="registerComplexe()" *ngIf="step == 2 && ready">
+      <label class="form-group has-float-label">
+        <input class="form-control" [(ngModel)]="academy.name" style="padding: .8rem; font-size: 1.1rem" required #title="ngModel"
+          name="nom"  />
+        <span style="font-size: 100% !important;">Nom du complexe</span>
+        <div *ngIf="!title.valid && update.submitted" class="invalid-tooltip">
+          Champ
+          requis!</div>
+      </label>
+
+      <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required #adress="ngModel" type="text"
+          name="add" [(ngModel)]="academy.address" />
+        <span style="font-size: 100% !important;">Adresse du complexe</span>
+        <div *ngIf="!adress.valid && update.submitted" class="invalid-tooltip">
+          Champ
+          requis!</div>
+      </label>
+
+      <label class="form-group has-float-label">
+        <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required #numerr="ngModel" type="tel" name="tel"
+          [(ngModel)]="academy.numero" />
+        <span style="font-size: 100% !important;">Numéro de téléphone</span>
+        <div *ngIf="!numerr.valid && update.submitted" class="invalid-tooltip">
+          Champ
+          requis!</div>
+      </label>
+
+      <label class="form-group has-float-label">
+
+        <timepicker #opening="ngModel" [showMeridian]="false" class="form-control" style="padding: .8rem; font-size: 1.1rem" required
+          name="h-open" [(ngModel)]="academy.opening" [showSpinners]="false"></timepicker>
+        <span style="font-size: 100% !important;">Horraire d'ouverture</span>
+        <div *ngIf="!opening.valid && update.submitted" class="invalid-tooltip">
+          Champ
+          requis!</div>
+      </label>
+
+      <label class="form-group has-float-label">
+
+        <timepicker #closing="ngModel" [showMeridian]="false" class="form-control" style="padding: .8rem; font-size: 1.1rem" required
+          name="h-close" [(ngModel)]="academy.closing" [showSpinners]="false"></timepicker>
+
+        <span style="font-size: 100% !important;">Horraire de fermeture</span>
+        <div *ngIf="!closing.valid && update.submitted" class="invalid-tooltip">
+          Champ
+          requis!</div>
+      </label>
+
+      <div style="display: flex;">
+        <div style="margin: 0 auto;"></div>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonComplexeState"
+          [isDisabled]="buttonComplexeDisabled" click="registerComplexe()">
+          CREER
+        </app-state-button>
+      </div>
+
+    </form> -->
+
+  </div>
+</div>
+<simple-notifications></simple-notifications>

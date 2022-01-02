@@ -1,0 +1,62 @@
+<div class="card auth-card" >
+    <div class="position-relative image-side ">
+      <p class=" text-white fw-700 h2">GARK</p>
+    </div>
+    <div class="form-side">
+      <a class="c-pointer">
+        <span class="logo-single"></span>
+      </a>
+      <h3 class="mb-md-4 mb-sm-1">Créer une academie</h3>
+
+<form #update="ngForm" (ngSubmit)="registerComplexe()">
+    <label class="form-group has-float-label">
+      <input class="form-control" [(ngModel)]="academy.name" style="padding: .8rem; font-size: 1.1rem" required #title="ngModel"
+        name="nom"  />
+      <span style="font-size: 100% !important;">Nom de l'academie</span>
+      <div *ngIf="!title.valid && update.submitted" class="invalid-tooltip">
+        Champ
+        requis!</div>
+    </label>
+
+    <label class="form-group has-float-label">
+      <input class="form-control" style="padding: .8rem; font-size: 1.1rem" required #adress="ngModel" type="text"
+        name="add" [(ngModel)]="academy.address" />
+      <span style="font-size: 100% !important;">Adresse de l'academie</span>
+      <div *ngIf="!adress.valid && update.submitted" class="invalid-tooltip">
+        Champ
+        requis!</div>
+    </label>
+
+    <label class="form-group has-float-label">
+
+      <timepicker #opening="ngModel" [showMeridian]="false" class="form-control" style="padding: .8rem; font-size: 1.1rem" required
+        name="h-open" [(ngModel)]="academy.opening" [showSpinners]="false"></timepicker>
+      <span style="font-size: 100% !important;">Horraire d'ouverture</span>
+      <div *ngIf="!opening.valid && update.submitted" class="invalid-tooltip">
+        Champ
+        requis!</div>
+    </label>
+
+    <label class="form-group has-float-label">
+
+      <timepicker #closing="ngModel" [showMeridian]="false" class="form-control" style="padding: .8rem; font-size: 1.1rem" required
+        name="h-close" [(ngModel)]="academy.closing" [showSpinners]="false"></timepicker>
+
+      <span style="font-size: 100% !important;">Horraire de fermeture</span>
+      <div *ngIf="!closing.valid && update.submitted" class="invalid-tooltip">
+        Champ
+        requis!</div>
+    </label>
+
+    <div style="display: flex;">
+      <div style="margin: 0 auto;"></div>
+      <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonComplexeState"
+        [isDisabled]="buttonComplexeDisabled" click="registerComplexe()">
+        CREER
+      </app-state-button>
+    </div>
+
+  </form>
+    </div>
+</div>
+  <simple-notifications></simple-notifications>

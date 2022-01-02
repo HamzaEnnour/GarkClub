@@ -1,0 +1,17 @@
+
+<h2 class="text-center"> Etes vous sûr? </h2>
+<p style="font-size: 1rem;" class="mb-3 text-center"> Voulez-vous vraiment supprimer ce terrain? <br> Toutes les réservations relatives seront supprimer </p>
+
+<div style="display: flex;">
+    <div>
+        <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()" > Annuler </button>
+    </div>
+    <div style="margin: 0 auto;" ></div>
+    <div>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState" (click)="confirm()">
+          Confirmer
+        </app-state-button>
+    </div>
+</div>
+
+<simple-notifications></simple-notifications>

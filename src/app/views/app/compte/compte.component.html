@@ -1,0 +1,323 @@
+<div class="main-panel">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 mb-3 grid-margin stretch-card">
+                <div class="card">
+                    <div class="profile-card">
+
+                        <div class="profile-header">
+
+                            <div class="cover-image">
+                                <img src="/assets/imgs/cover-profile.png" class="img img-fluid" style="width: 100%;">
+                            </div>
+                            <div class="user-image ">
+                                <div class="image-container">
+                                    <img [src]="imageSrc" (error)="defaultImage()" class="img ">
+                                    <div class="overlay" *ngIf="!isImageUploadLoading" (click)="fileSelect.click()">
+                                        <!--  -->
+                                        <div class="text">
+                                            <!-- <mat-icon>edit</mat-icon> -->
+                                            <button mat-fab class="mat-f">
+                                                <mat-icon class="camera">photo_camera</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="fixed-overlay" *ngIf="isImageUploadLoading">
+                                        <div class="lds-roller">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="file" style="display: none;" (change)="imageSelected($event)"
+                                    accept="image/*" #fileSelect id="">
+                            </div>
+                        </div>
+
+                        <div class="profile-content">
+                            <div class="profile-name text-center ">
+                                {{ ownerInfo?.firstName + ' ' + ownerInfo?.lastName | titlecase }} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 grid-margin stretch-card" style="margin-bottom: 100px;">
+                <div class="card">
+                    <div class="card-body">
+                        <div style="display: flex;">
+                            <div>
+                                <h2 class="card-title font-weight-bold">A propos</h2>
+                            </div>
+                            <div style="margin: 0 auto;"></div>
+                            <div>
+                                <i (click)="openModifyAccount()" id="update-btn"
+                                    class="flaticon-setting-lines mr-3"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <tabset>
+                                <tab heading="Profil" id="tab1">
+                                    <div style="display: flex;" class="mt-3">
+                                        <div style="margin: 0 auto;"></div>
+                                        <div>
+                                            <i (click)="openModifyAccount()" id="update-btn"
+                                                class="flaticon-setting-lines mr-3"></i>
+                                        </div>
+                                    </div>
+                                    <ul class="about" id="show-details">
+                                        <li class="about-items"><i class="mdi mdi-account icon-sm "></i>
+                                            <span class="fw-700">Nom et Prénom:</span> <br>
+                                            <span class="">
+                                                {{ ownerInfo?.firstName + ' ' + ownerInfo?.lastName | titlecase }}
+                                            </span>
+                                        </li>
+                                        <li class="about-items"><i class="mdi mdi-mail-ru icon-sm "></i>
+                                            <span class="fw-700">E-mail:</span> <br>
+                                            <span class="about-item-detail">{{ ownerInfo?.email }} </span>
+                                        </li>
+
+                                        <li class="about-items">
+                                            <span class="fw-700">Numéro de téléphone:</span> <br>
+                                            <span class="about-item-detail" *ngIf="ownerInfo?.telephone != '' ">
+                                                {{ownerInfo?.telephone}} </span>
+                                            <span class="about-item-detail" *ngIf="ownerInfo?.telephone == ''">
+                                                ---- </span>
+                                        </li>
+                                        <li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i>
+                                            <span class="fw-700">Adresse:</span> <br>
+                                            <span class="about-item-detail" *ngIf="ownerInfo?.address != ''">
+                                                {{ ownerInfo?.address }} </span>
+                                            <span class="about-item-detail" *ngIf="ownerInfo?.address == ''"> ----
+                                            </span>
+                                        </li>
+
+                                    </ul>
+                                    <div id="show-forms" style="display: none;" *ngIf="ownerInfo">
+
+                                        <form #createForm="ngForm" (ngSubmit)="openModifyAccount()">
+                                            <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #prenom="ngModel" name="text" name="pre"
+                                                    [(ngModel)]="ownerInfo.firstName" />
+                                                <span style="font-size: 100% !important;">Prénom</span>
+                                                <div *ngIf="!prenom.valid && createForm.submitted"
+                                                    class="invalid-tooltip">Champ
+                                                    requis!</div>
+                                            </label>
+
+                                            <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #lst="ngModel" type="text" name="nom" id="last-name"
+                                                    [(ngModel)]="ownerInfo.lastName" />
+                                                <span style="font-size: 100% !important;">Nom</span>
+                                                <div *ngIf="!lst.valid && createForm.submitted" class="invalid-tooltip">
+                                                    Champ
+                                                    requis!</div>
+                                            </label>
+
+                                            <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    type="email" name="email" disabled [value]="ownerInfo.email" />
+                                                <span style="font-size: 100% !important;">E-mail</span>
+                                            </label>
+
+
+                                            <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #phone="ngModel" name="tel"
+                                                    [(ngModel)]="ownerInfo.telephone" />
+                                                <span style="font-size: 100% !important;">Numéro de téléphone</span>
+                                                <div *ngIf="!phone.valid && createForm.submitted"
+                                                    class="invalid-tooltip">Champ
+                                                    requis!</div>
+                                            </label>
+
+                                            <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #add="ngModel" name="nom"
+                                                    [(ngModel)]="ownerInfo.address" />
+                                                <span style="font-size: 100% !important;">Adresse</span>
+                                                <div *ngIf="!add.valid && createForm.submitted" class="invalid-tooltip">
+                                                    Champ
+                                                    requis!</div>
+                                            </label>
+
+                                            <div style="display: flex;">
+                                                <div style="margin: 0 auto;"></div>
+                                                <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'"
+                                                    [currentState]="buttonState" [isDisabled]="buttonDisabled"
+                                                    (click)="UpdateProfile()">
+                                                    Mettre à jour
+                                                </app-state-button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </tab>
+                                <tab heading="Club">
+                                    <div style="display: flex;" class="mt-3">
+                                        <div style="margin: 0 auto;"></div>
+                                        <!-- <div>
+                                            <i (click)="openModifyClub()" id="update-complexe-btn"
+                                                class="flaticon-setting-lines mr-3"></i>
+                                        </div> -->
+                                    </div>
+                                    <ul class="about" id="show-terrain">
+                                        <li class="about-items">
+                                            <span class="fw-700">Nom du Club </span> <br>
+                                            <span class=""> {{ currentClubInfo?.name }}
+                                            </span>
+                                        </li>
+                                        <li class="about-items">
+                                            <span class="fw-700">Adresse du club</span> <br>
+                                            <span class="about-item-detail">{{ currentClubInfo?.address }} </span>
+                                        </li>
+
+                                        <!-- <li class="about-items">
+                                            <span class="fw-700">Numéro du club (publique) :</span> <br>
+                                            <span class="about-item-detail"> {{ complexe?.numero }} </span>
+                                        </li> -->
+                                        <li class="about-items">
+                                            <span class="fw-700">Horraire d'ouverture:</span> <br>
+                                            <span class="about-item-detail"> {{ currentClubInfo?.opening }} </span>
+                                        </li>
+                                        <li class="about-items">
+                                            <span class="fw-700">Horraire de fermeture :</span> <br>
+                                            <span class="about-item-detail"> {{ currentClubInfo?.closing }} </span>
+                                        </li>
+                                    </ul>
+
+                                    <div id="show-complexe-form" style="display: none;" *ngIf="currentClubInfo">
+
+                                        <form #update="ngForm" (ngSubmit)="UpdateComplexe()">
+                                            <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #name="ngModel" name="text" name="nme"
+                                                    [(ngModel)]="currentClubInfo.name" />
+                                                <span style="font-size: 100% !important;">Nom du club </span>
+                                                <div *ngIf="!name.valid && update.submitted" class="invalid-tooltip">
+                                                    Champ
+                                                    requis!</div>
+                                            </label>
+
+                                            <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #adress="ngModel" type="text" name="add"
+                                                    [(ngModel)]="currentClubInfo.address" />
+                                                <span style="font-size: 100% !important;">Adresse du club</span>
+                                                <div *ngIf="!adress.valid && update.submitted" class="invalid-tooltip">
+                                                    Champ
+                                                    requis!</div>
+                                            </label>
+
+                                            <!-- <label class="form-group has-float-label">
+                                                <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #numerr="ngModel" name="tel"
+                                                    [(ngModel)]="complexe.numero" />
+                                                <span style="font-size: 100% !important;">Numéro de téléphone</span>
+                                                <div *ngIf="!numerr.valid && update.submitted" class="invalid-tooltip">
+                                                    Champ
+                                                    requis!</div>
+                                            </label> -->
+
+                                            <label class="form-group has-float-label">
+                                                 <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required #opening="ngModel" name="h-open"
+                                                    [(ngModel)]="complexe.opening" /> 
+
+                                                <timepicker #opening="ngModel" [showMeridian]="false"
+                                                    class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required name="h-open" [(ngModel)]="currentClubInfo.opening"
+                                                    [showSpinners]="false"></timepicker>
+                                                <span style="font-size: 100% !important;">Horraire d'ouverture</span>
+                                                <div *ngIf="!opening.valid && update.submitted" class="invalid-tooltip">
+                                                    Champ
+                                                    requis!</div>
+                                            </label>
+
+                                            <label class="form-group has-float-label">
+
+                                                <timepicker #closing="ngModel" [showMeridian]="false"
+                                                    class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                    required name="h-close" [(ngModel)]="currentClubInfo.closing"
+                                                    [showSpinners]="false"></timepicker>
+
+                                                <span style="font-size: 100% !important;">Horraire de fermeture</span>
+                                                <div *ngIf="!closing.valid && update.submitted" class="invalid-tooltip">
+                                                    Champ
+                                                    requis!</div>
+                                            </label>
+
+
+
+                                            <div style="display: flex;">
+                                                <div style="margin: 0 auto;"></div>
+                                                <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'"
+                                                    [currentState]="buttonComplexeState"
+                                                    [isDisabled]="buttonComplexeDisabled" (click)="UpdateComplexe()">
+                                                    Mettre à jour
+                                                </app-state-button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </tab>
+                                <tab heading="Mot de passe">
+                                    <form class="mt-4" (ngSubmit)="updatePassword()">
+
+                                        <label class="form-group has-float-label">
+                                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                required #oldPwd="ngModel" name="old" type="password"
+                                                [(ngModel)]="oldPassword" />
+                                            <span style="font-size: 100% !important;">Ancien Mot de passe</span>
+                                            <!-- <div *ngIf="!pwd.valid && createForm.submitted" class="invalid-tooltip">
+                                                Champ
+                                                requis!</div> -->
+                                        </label>
+                                        <label class="form-group has-float-label">
+                                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                required #newPwd="ngModel" (keyup)="newChanged()" name="new"
+                                                type="password" [(ngModel)]="newPassword" />
+                                            <span style="font-size: 100% !important;">Nouveau Mot de passe</span>
+                                            <!-- <div *ngIf="!pwd.valid && createForm.submitted" class="invalid-tooltip">
+                                                Champ
+                                                requis!</div> -->
+                                        </label>
+                                        <label class="form-group has-float-label">
+                                            <input class="form-control" style="padding: .8rem; font-size: 1.1rem"
+                                                required #conf="ngModel" (keyup)="confirmChanged()" name="co"
+                                                type="password" [(ngModel)]="confirmPassword" />
+                                            <span style="font-size: 100% !important;">Confirmer Mot de passe</span>
+                                            <!-- <div *ngIf="!conf.valid && createForm.submitted" class="invalid-tooltip">
+                                                Champ
+                                                requis!</div> -->
+                                        </label>
+                                        <div class="text-danger" *ngIf="confirmIncorrect"> Les deux mots de passe ne se
+                                            correpondent pas </div>
+
+
+                                        <div style="display: flex;">
+                                            <div style="margin: 0 auto;"></div>
+                                            <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'"
+                                                [currentState]="buttonPasswordState"
+                                                [isDisabled]="buttonPasswordDisabled" click="updatePassword()">
+                                                Mettre à jour
+                                            </app-state-button>
+                                        </div>
+                                    </form>
+                                </tab>
+                            </tabset>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications></simple-notifications>

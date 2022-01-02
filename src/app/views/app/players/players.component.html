@@ -1,0 +1,179 @@
+<div *ngIf="players == undefined || players == null || players?.length == 0">
+  <div class="alert alert-secondary" role="alert">
+  <p>Aucun joueur appartient à ce groupe</p>
+</div>
+</div>
+
+<div id="fixedbutton">
+  <button mat-fab (click)="addPlayerToGroup()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<simple-notifications></simple-notifications>
+<div *ngIf="players && players?.length > 0">
+<!-- <div class="input-group mb-3" style="padding-left: 1.5rem; padding-right: 1.5rem">
+    <input type="text" class="form-control" #search id="search" placeholder="Chercher ..." aria-label="Chercher"
+      aria-describedby="search-addon">
+</div> -->
+
+<div *ngIf="isMobile">
+  <div class="entete">
+    Coach (Groupe: {{selectedItem?.name}})
+  </div>
+  <div class="fontColor">
+    <mat-card class="example-card">
+      <mat-card-header  class="box">
+        <div class="flex-item">
+          <div class="box">
+              <div class="flex-item">
+                <div mat-card-avatar class="example-header-image" *ngIf="!coachPicturePath"
+                  style="background-image: url('../../../../assets/imgs/img_avatar.png');
+                  margin-right: 10px;">
+                </div>
+                  <div mat-card-avatar class="example-header-image" *ngIf="coachPicturePath"
+                  style="margin-right: 10px;"
+                  [ngStyle]="{'background-image': 'url('+coachPicturePath+')'}">
+                </div>
+              </div>
+              <div class="flex-item">
+                <mat-card-title>
+                  {{selectedItem?.coach?.firstName}} {{selectedItem?.coach?.lastName}}
+              </mat-card-title>
+              </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <button type="button" class="btn btn-info" (click)="navigateToCoachProfile(selectedItem?.coach)">Voir</button>
+        </div>
+      </mat-card-header>
+    </mat-card>
+  </div>
+  <div class="entete">
+    Joueurs ({{players?.length}})
+  </div>
+  <div class="fontColor" *ngFor="let user of players">
+    <mat-card class="example-card">
+      <mat-card-header class="box">
+        <div class="flex-item">
+          <div class="box">
+            <div class="flex-item">
+
+        <div mat-card-avatar class="example-header-image" *ngIf="!user?.player?.picture"
+          style="background-image: url('../../../../assets/imgs/img_avatar.png');"></div>
+   
+          <div mat-card-avatar class="example-header-image" *ngIf="user?.player?.picture"
+          [ngStyle]="{'background-image': 'url('+user?.player?.picture+')'}"></div>
+        </div>
+        <div class="flex-item">
+
+        <mat-card-title>
+          {{user?.player?.firstName | uppercase }} {{user?.player?.lastName | uppercase}}
+        </mat-card-title>
+        </div>
+      </div>
+        </div>
+        <div class="flex-item">
+        <button type="button" class="btn btn-info" (click)="navigateToProfile(user)">Voir</button>
+      </div>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+</div>
+
+<div class="container" *ngIf="!isMobile">
+
+  <!-- <div class="row" *ngIf="!activateLayoutFlag"> -->
+    <div class="row">
+      <div class="col">
+          <div class="card user-card">
+            <div class="card user-card">
+              <div class="ribbon-wrapper">
+                <div class="ribbon red">Coach</div>
+            </div>
+            <div class="card-header">
+              <!-- <h5>Profile</h5> -->
+            </div>
+            <div class="card-block">
+              <div class="user-image" *ngIf="selectedItem?.coach?.picture">
+                <img [src]="coachPicturePath" class="img-radius" alt="User-Profile-Image">
+              </div>
+
+              <div class="user-image" *ngIf="!selectedItem?.coach?.picture">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
+              </div>
+
+              <h6 class="f-w-600 m-t-25 m-b-10">
+                {{selectedItem?.coach?.firstName}} {{selectedItem?.coach?.lastName}}
+                    </h6>
+                    <p class="text-muted">Active | Coach</p>
+                    <p class="text-muted">          
+                      {{selectedItem?.coach?.email}}         
+                    </p>
+              <hr>
+              <p class="m-t-15 text-muted">Rôle:</p>
+              <hr>
+              <!-- <div class="row justify-content-center user-social-link">
+                <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+                <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+                <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div>
+              </div> -->
+              <button type="button" class="btn btn-info rounded-0" (click)="navigateToCoachProfile(selectedItem?.coach)">profil</button>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let user of players">
+      <!-- <div class="card user-card" [ngStyle]="{'border-top': '3px solid' + groupsList[0]?.color}"> -->
+      <div class="card user-card">
+        <div class="ribbon-wrapper">
+          <div class="ribbon blue">Joueur</div>
+      </div>
+        <div class="card-header text-left">
+          <!-- <h5>Profile</h5> -->
+          <button class="rounded-0 btn-layout" type="button" (click)="delete(user)">
+            <i class="fa fa-trash rounded-0" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="card-block">
+          
+          <div class="user-image" *ngIf="user?.player?.picture">
+            <img [src]="user?.player?.picture" class="img-radius" alt="User-Profile-Image">
+          </div>
+          <div class="user-image" *ngIf="!user?.player?.picture">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
+          </div>
+          <h6 class="f-w-600 m-t-25 m-b-10 text-nowrap">
+                  {{user?.player?.firstName | uppercase }} {{user?.player?.lastName | uppercase}}
+                </h6>
+                <p class="text-muted">Active | {{user?.player?.gender }}</p>
+                <p class="text-muted">{{user?.player?.email }}</p>
+          <hr>
+          <p class="text-muted m-t-15">Score: {{user?.playerReview?.mean }}%</p>
+          <ul class="list-unstyled activity-leval">
+              <li [ngClass]="{'active': user?.playerReview?.mean > 0}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 20}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 40}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 60}"></li>
+              <li [ngClass]="{'active': user?.playerReview?.mean > 80}"></li>
+          </ul>
+    
+          <hr>
+          <div class="row justify-content-center user-social-link">
+            <!-- <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+            <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+            <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div> -->
+          </div>
+          <button type="button" class="btn btn-info rounded-0" (click)="navigateToProfile(user)">profil</button>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="space"></div>

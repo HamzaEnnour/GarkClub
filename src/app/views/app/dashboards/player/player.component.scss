@@ -1,0 +1,45 @@
+#container {
+    max-width: 700px;
+    min-width: 520px;
+  }
+  
+  
+  #loader {
+    color: #008cff;
+    height: 40px;
+    left: 45%;
+    position: absolute;
+    top: 45%;
+    width: 30%;
+  }
+  
+  .e-content .e-item {
+    font-size: 12px;
+    margin: 10px;
+  }
+
+  mat-icon {
+    font-size: 1.6rem;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  span{
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 0px;
+  }
+
+  .icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+
+.e-tab.tab-class .e-tab-header .e-toolbar-items .e-indicator { 
+  background-color: #64ffda
+}

@@ -1,0 +1,95 @@
+<!-- <form #reservForm="ngForm">
+    <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+        Créer un groupe <br>
+    </h4>
+    <table class="custom-event-editor" width="100%" cellpadding="5">
+        <tbody>
+            <tr>
+                <td class="e-textlabel">Catégorie</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Nom de la category"
+                        [ngModelOptions]="{standalone: true}" type="text" id="Name-category" name="category"
+                        [(ngModel)]="resMobile.category" #nm="ngModel" style="width: 100%" />
+                    <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir la category
+                    </div>
+                </td>
+  
+            </tr>
+            <tr>
+                <td class="e-textlabel">Quantité</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Nom du quantité"
+                        [ngModelOptions]="{standalone: true}" type="text" id="Name-quantity" name="quantity"
+                        [(ngModel)]="resMobile.quantity" #nm="ngModel" style="width: 100%" />
+                    <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir la quantité
+                    </div>
+                </td>
+  
+            </tr>
+            <tr>
+                <td class="e-textlabel">Prix unitaire</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Prix unitaire"
+                        [ngModelOptions]="{standalone: true}" type="number" id="Name-unitPrice" name="unitPrice"
+                        [(ngModel)]="resMobile.unitPrice" #nm="ngModel" style="width: 100%" />
+                    <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir le prix unitaire
+                    </div>
+                </td>
+  
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="display: flex; width: 100%">
+        <div>
+            <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler
+            </button>
+        </div>
+        <div style="margin: 0 auto;"></div>
+        <div>
+            <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow'" [currentState]="buttonState"
+                [isDisabled]="buttonDisabled || reservForm.invalid" (click)="onSubmit()">
+                <span>Ajouter</span>
+            </app-state-button>
+        </div>
+    </div>
+  </form> -->
+  
+  <!-- <simple-notifications></simple-notifications> -->
+
+
+  <h1 class="text-center">Nouvel équipement </h1>
+  
+  <form #reservForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+      <label class="form-group has-float-label">
+          <input class="form-control" required #category="ngModel" 
+          name="category" [(ngModel)]="resMobile.category" />
+          <span  style="font-size: 100% !important;" >Category: </span>
+          <div *ngIf="!category.valid && reservForm.submitted" class="invalid-tooltip">Champ requis!</div>
+      </label>
+
+      <label class="form-group has-float-label">
+        <input class="form-control" required #quantity="ngModel"
+        type="number"
+        name="quantity" [(ngModel)]="resMobile.quantity" />
+        <span  style="font-size: 100% !important;" >Quantité: </span>
+        <div *ngIf="!quantity.valid && reservForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+
+    <!-- <label class="form-group has-float-label">
+        <input class="form-control" required #unitPrice="ngModel" 
+        name="unitPrice" [(ngModel)]="resMobile.unitPrice" />
+        <span  style="font-size: 100% !important;" >Prix unitaire: </span>
+        <div *ngIf="!unitPrice.valid && reservForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label> -->
+  
+      <div class="d-flex justify-content-between align-items-center">
+          <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()" > Annuler </button>
+          <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+          [isDisabled]="buttonDisabled || reservForm.invalid">
+            <span>Ajouter</span>
+          </app-state-button>
+        </div>
+  </form>
+  
+  <simple-notifications></simple-notifications>

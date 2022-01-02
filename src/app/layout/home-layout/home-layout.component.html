@@ -1,0 +1,58 @@
+<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
+    <div class="mobile-menu" (click)="$event.stopPropagation()">
+        <a (click)="goHome()" class="logo-mobile">
+        </a>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a (click)="scrollTo('#footer')" class="pointer" (click)="goAbout()">A propos</a></li>
+            <li class="nav-item"><a (click)="scrollTo('#layouts')" class="pointer" (click)="goContact()">Contactez-nous</a></li>
+            <li >
+                <a *ngIf="!auth.isAuthenticated" class="btn btn-gradiant" href="/user/login"> Se connecter </a>
+                <a *ngIf="auth.isAuthenticated" class="btn btn-gradiant" [href]="adminRoot"> Mon compte </a>
+            </li>
+            <li class="nav-item">
+                <div class="separator"></div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="main-container">
+        <div class="landing-page-nav">
+            <nav>
+                <div class="container d-flex align-items-center justify-content-between">
+                    <a class="navbar-logo pull-left" (click)="scrollTo('#home')" href="javascript:;">
+                        <span style="display: flex;" href="/" class="pointer">
+                            <img height="40px"  style="margin-left: 10px;" src="/assets/imgs/GARK-LOGO.png" alt="gark logo">
+                            <img height="40px"  style="margin-left: 5px;" src="/assets/imgs/Gark-Label.png" alt="gark label">
+                        </span>
+                    </a>
+                    <ul class="navbar-nav d-none d-lg-flex flex-row">
+                        <li class="nav-item"><a (click)="scrollTo('#footer')" class="pointer" (click)="goAbout()">A propos</a></li>
+                        <li class="nav-item"><a (click)="scrollTo('#layouts')" class="pointer" href="/contact">Contactez-nous</a>
+                        </li>
+                        <li class=" pl-4">
+                            <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+                                [isDisabled]="buttonDisabled" (click)="goLogin()">
+                                <span  *ngIf="!auth.isAuthenticated"> Se connecter </span>
+                                <span  *ngIf="auth.isAuthenticated"> Mon Compte </span>
+                            </app-state-button>
+                        </li>
+                    </ul>
+                    <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
+                        <i class="simple-icon-menu"></i>
+                    </span>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="content-container" id="home">
+
+            <router-outlet></router-outlet>
+
+
+
+        </div>
+    </div>
+</div>
+<app-footer-app></app-footer-app>

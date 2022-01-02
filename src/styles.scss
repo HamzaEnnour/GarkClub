@@ -1,0 +1,268 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+// @import '../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-angular-schedule/styles/material.scss';
+// @import "~leaflet/dist/leaflet.css";
+@import "~@angular/material/theming";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+// @import "../node_modules/angular-calendar/css/angular-calendar.css";
+// @import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+// @import '../node_modules/@syncfusion/ej2-angular-schedule/styles/material.css';
+
+
+// .dark-theme{
+  // @import '../node_modules/@syncfusion/ej2-base/styles/material-dark.css';   
+  // @import '../node_modules/@syncfusion/ej2-buttons/styles/material-dark.css';   
+  // @import '../node_modules/@syncfusion/ej2-popups/styles/material-dark.css';   
+  // @import '../node_modules/@syncfusion/ej2-navigations/styles/material-dark.css'; 
+  // @import '../node_modules/@syncfusion/ej2-calendars/styles/material-dark.css';
+  // @import '../node_modules/@syncfusion/ej2-angular-schedule/styles/material-dark.css';
+  // @import '../node_modules/@syncfusion/ej2-dropdowns/styles/material-dark.css';
+  // @import '../node_modules/@syncfusion/ej2-inputs/styles/material-dark.css';
+  // @import '../node_modules/@syncfusion/ej2-lists/styles/material-dark.css';
+// }
+
+
+// @import "./../node_modules/leaflet-geosearch/dist/geosearch.css";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$leBistrot-primary: mat-palette($mat-teal);
+$leBistrot-accent: mat-palette($mat-teal, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$leBistrot-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$leBistrot-theme: mat-light-theme(
+  (
+    color: (
+      primary: $leBistrot-primary,
+      accent: $leBistrot-accent,
+      warn: $leBistrot-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($leBistrot-theme);
+
+
+/* You can add global styles to this file, and also import other style files */
+
+.default {
+  @import "./assets/scss/default";
+}
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+/***********************************/
+mat-bottom-sheet-container {
+  min-width: 90vw !important;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif !important;
+}
+.mat-bottom-sheet-container.custom {
+  border-radius: 0 0 10px 10px;
+  // background-image: url(./assets/images/bg_pop.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.mat-bottom-sheet-container.social {
+  width: 80%;
+  margin: 10px auto;
+}
+
+lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.full-screen{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.lds-roller {
+    /* display: inline-block; */
+    /* position: relative; */
+    margin: auto;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgb(5, 187, 153);
+    margin: -4px 0 0 -4px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+  *::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+}
+
+/* background of the scrollbar except button or resizer */
+*::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+/* scrollbar itself */
+*::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+}
+
+/* set button(top and bottom of the scrollbar) */
+*::-webkit-scrollbar-button {
+    display:none;
+}
+
+.btn-danger {
+  background-color: white !important;
+  border-color: black !important;
+  color: black !important;
+}
+.btn-danger:hover {
+  background-color: black !important;
+  border-color: white !important;
+  color: white !important;
+}
+.btn-empty{
+  i::before{
+    font-size: 28px;
+    margin-left: 5px !important;
+    vertical-align: middle;
+  }
+}
+.dropdown-item{
+  i::before{
+    margin-left: 0px !important;
+    margin-right: 5px !important;
+    vertical-align: middle;
+    font-size: 21px;
+  }
+}
+.navbar .user .name {
+  color: #878787;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.flex-stretch {
+  flex: 1 0 auto;
+}
+
+
+.dark {
+  @import "./assets/css/sass/themes/vien.dark.greenlime.scss";
+  background-color: #232223 !important;
+}

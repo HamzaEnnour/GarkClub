@@ -1,0 +1,14 @@
+<div class="h-100">
+  <div id="app-container" [className]="sidebar.containerClassnames" (scroll)="onScroll($event)">
+      <app-topnav></app-topnav>
+      <app-sidebar></app-sidebar>
+      <main>
+      <div class="container" style="height: 90vh;">
+        <router-outlet></router-outlet>
+        <!-- {{ message | async | json }} -->
+        <!-- <button (click)="send('notification test','604543ec805cd41a50802617','608db9994b06503c083c6641')">send</button> -->
+      </div>
+    </main>
+  </div>
+</div>
+ 

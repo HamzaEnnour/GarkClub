@@ -1,0 +1,25 @@
+.mat-dialog-container {
+    display: block;
+    padding: 10px !important;
+}
+
+.trigger{
+    cursor: pointer;
+    i::before{
+        margin-left: 0px !important;
+    }
+}
+
+.input-group-append{
+    .input-group-text{
+        padding: 2px !important;
+    }
+}
+
+.row {
+    margin: 15px 0px;
+  }
+
+  #rowInput{
+    margin: 25px 0px;
+  }

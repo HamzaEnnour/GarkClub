@@ -1,0 +1,97 @@
+<!-- 
+    <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+        {{resMobile.Name}}<br>
+    </h4> -->
+  
+    <ejs-tab id="element" overflowMode='Scrollable'  [cssClass]="tabClass" height="400px">
+      <e-tabitems>
+          <e-tabitem>
+              <ng-template #headerText>
+                  Info
+              </ng-template>
+              <ng-template #content>
+                  <div class="row">
+                      <div class="col">
+                          <b>Groupe</b>
+                      </div>
+                      <div class="col">
+                          {{event?.Subject}}
+                      </div>
+                  </div>
+  
+                  <div class="row">
+                      <div class="col">
+                          <b>Début à</b>
+                      </div>
+                      <div class="col">
+                          {{event?.StartTime | date: 'HH:mm'}}
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <b>Fin à</b>
+                      </div>
+                      <div class="col">
+                          {{event?.EndTime | date: 'HH:mm'}}
+  
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <b>Le</b>
+                      </div>
+                      <div class="col">
+                          {{event?.StartTime | date: 'longDate'}}
+                      </div>
+                  </div>
+              </ng-template>
+  
+          </e-tabitem>
+          
+          <e-tabitem>
+            <ng-template #headerText>
+                Evaluation
+            </ng-template>
+            <ng-template #content>
+                <mat-card class="example-card" *ngFor="let user of players" style="width: 100%;">
+                    <mat-card-content class="box">
+                            <div class="flex-item">
+                                <div class="box">
+                                    <div class="flex-item">
+                                        <div *ngIf="user?.picture" class="user-image">
+                                            <img mat-card-image class="imgs" alt="thumb" [src]="user?.picture" />
+                                        </div>
+                                        <div *ngIf="!user?.picture" class="user-image">
+                                            <img mat-card-image class="imgs" alt="thumb" src="../../../../../assets/imgs/img_avatar.png" />
+                                        </div>
+                                    </div>
+                                    <div class="flex-item">
+                                {{user.firstName | uppercase }} {{user.lastName | uppercase}}
+                                    </div>
+                                    <div id='element' class="flex-item">
+                                        <h3 *ngIf="!user.reviewd"><span class="e-badge e-badge-primary e-badge-pill green">Non évalué</span></h3>
+                                        <h3 *ngIf="user.reviewd"><span class="e-badge e-badge-dark e-badge-pill green">Evalué</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="flex-item" *ngIf="!user.reviewd">
+                            <button type="button" (click)="evaluer(user)" class="btn rounded-0 text-right">
+                                <mat-icon>edit_note</mat-icon>
+                            </button> 
+                        </div>
+                        <div class="flex-item" *ngIf="user.reviewd">
+                            <!-- <button type="button" (click)="evaluer(user)" class="btn rounded-0 text-right">
+                                <mat-icon>edit_note</mat-icon>
+                            </button>  -->
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
+                </ng-template>
+          </e-tabitem>
+
+      </e-tabitems>
+  </ejs-tab>
+
+  <simple-notifications></simple-notifications>
+
+  

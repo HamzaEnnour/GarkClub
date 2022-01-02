@@ -1,0 +1,52 @@
+mat-slider {
+    width: 80px;
+  }
+
+
+  .header {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .e-tab.tab-class .e-tab-header .e-toolbar-items .e-indicator { 
+    background-color: #64ffda
+  }
+
+  h4 {
+    margin: 20px 10px;
+  }
+
+  div {
+    margin: 3px 10px;
+  }
+
+.row{
+  margin: 20px;
+  border-bottom: 1px solid rgb(202, 202, 202);
+}
+
+.col{
+  font-size: 14px;
+}
+
+.imgs {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.example-card {
+  // max-width: 400px;
+  margin: 10px 0px;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between
+}
+
+mat-card{
+  width: 100% !important;
+  border: 1px solid rgb(209, 209, 209);
+}

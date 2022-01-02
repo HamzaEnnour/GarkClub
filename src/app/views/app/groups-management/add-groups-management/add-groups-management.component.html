@@ -1,0 +1,42 @@
+<h1 class="text-center" *ngIf="!update" > Créer un nouveau groupe </h1>
+<h1 class="text-center" *ngIf="update" > Modifier groupe </h1>
+
+<form #groupForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <label class="form-group has-float-label">
+        <input class="form-control" required #titre="ngModel" 
+        name="nom" [(ngModel)]="resMobile.name" />
+        <span  style="font-size: 100% !important;" >Nom du groupe</span>
+        <div *ngIf="!titre.valid && groupForm.submitted" class="invalid-tooltip">Champ requis!</div>
+    </label>
+
+                <label class="form-group has-float-label">
+                <select class="custom-select" id="selectedItem"
+                name="selectedItem"
+                [(ngModel)]="selectedItem"
+                (change)="CoachHasChanged($event.target)">
+                    <option *ngFor="let item of academyCoaches"
+                    [value]="item._id">{{item?.value}}</option>
+                  </select>
+                  <span style="font-size: 100% !important;" >Coach</span>
+                </label>
+
+    <div class="pb-4 pt-2">
+      <p class="text-black mb-2">Choisir un couleur</p>
+      <div class="d-flex flex-row justify-content-between mb-3">
+        <a *ngFor="let color of colors"  (click)="choose(color)" class="color-palette" [ngClass]="{ 'active-color' : selectedColor == color }"  >
+          <div class="inner-color" [ngStyle]="{ 'background-color' : color }">  </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()" > Annuler </button>
+        <app-state-button [btnClass]="'btn btn-gradiant btn-lg btn-shadow'" [currentState]="buttonState"
+        [isDisabled]="buttonDisabled || groupForm.invalid">
+          <span *ngIf="!update" >Créer</span>
+          <span *ngIf="update" >Modifier</span>
+        </app-state-button>
+      </div>
+</form>
+
+<simple-notifications></simple-notifications>

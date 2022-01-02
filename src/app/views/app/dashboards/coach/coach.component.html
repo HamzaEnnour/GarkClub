@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-12">
+        <app-heading [title]="'Tableau de bord'" ></app-heading>
+        <app-breadcrumb></app-breadcrumb>
+        <div class="separator mb-5"></div>
+    </div>
+</div> 
+    <div class="container">
+        <div class="row addAcademy">
+            <div class="col">
+                <button type="button" class="btn btn-light fontColor" (click)="NavigateToAcademies()">
+                <i class="fas fa-cog fa-lg"></i> Mes clubs</button>
+            </div>
+        </div>
+        <app-best-players></app-best-players>
+        <div class="row">
+            <div class="col">
+                    <h2> <i class="flaticon-diagram flat"></i> Statistiques </h2>
+            </div>
+        </div>
+                <div class="row">
+                    <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+            [title]="'Clubs'" [detail]="'Nombre des clubs'"
+            [percent]="stats.academies*100" [progressText]="stats.academies">
+        </app-gradient-with-radial-progress-card>
+
+                    <!-- <app-radial-process-card [title]="'Académies'"  
+                    [total]="stats.academies*100" [type]="'percent'" 
+                    [percent]="stats.academies" [isSortable]="true">
+                    </app-radial-process-card> -->
+                </div>
+                <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+            [title]="'Groupes'" [detail]="'Nombre des groupes'"
+            [percent]="stats.groupes*100" [progressText]="stats.groupes">
+        </app-gradient-with-radial-progress-card>
+                    <!-- <app-radial-process-card [title]="'Groupes'"  
+                    [total]="stats.groupes*100" [type]="'percent'" 
+                    [percent]="stats.groupes" [isSortable]="true">
+                    </app-radial-process-card> -->
+                </div>
+                </div>
+                <div class="row">
+                <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+            [title]="'Joueurs'" [detail]="'Nombre des joueurs'"
+            [percent]="stats.players*100" [progressText]="stats.players">
+        </app-gradient-with-radial-progress-card>
+                    <!-- <app-radial-process-card [title]="'Joueurs'"  
+                    [total]="stats.players*100" [type]="'percent'" 
+                    [percent]="stats.players" [isSortable]="true">
+                    </app-radial-process-card> -->
+                    </div>
+                    <div class="col">
+                    <app-gradient-with-radial-progress-card [icon]="'iconsminds-clock'" 
+                    [title]="'Séances animées'" [detail]="'Nombre total des séances animées'"
+                    [percent]="100" [progressText]="stats?.seances?.all">
+                </app-gradient-with-radial-progress-card> 
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col">
+                <div>
+                    <h2> <i class="flaticon-speedometer-2 flat"></i> Seances Animées </h2>
+                </div>
+                
+                <div>
+                    <app-radial-process-card [title]="'Aujourd\'hui'"  
+                    [total]="stats.seances.today*100" [type]="'percent'" 
+                    [percent]="stats.seances.today" [isSortable]="true">
+                    </app-radial-process-card>
+                </div>
+                <div>
+                    <app-radial-process-card [title]="'Cette semaine'"  
+                    [total]="stats.seances.thisWeek*100" [type]="'percent'" 
+                    [percent]="stats.seances.thisWeek" [isSortable]="true">
+                    </app-radial-process-card>
+                </div>
+                <div>
+                    <app-radial-process-card [title]="'Ce mois'"  
+                    [total]="stats.seances.thisMonth*100" [type]="'percent'" 
+                    [percent]="stats.seances.thisMonth" [isSortable]="true">
+                    </app-radial-process-card>
+                </div>
+            
+            </div>
+            </div>
+    </div>
+    <div class="space">
+        
+    </div>

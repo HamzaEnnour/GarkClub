@@ -1,0 +1,237 @@
+<div class="row">
+    <div class="col-12">
+        <app-heading [title]="'Tableau de bord'" ></app-heading>
+        <app-breadcrumb></app-breadcrumb>
+        <div class="separator mb-5"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <app-player-card 
+        [itemImageUrl]="'../../../assets/imgs/fifaCard/SilverRare.png'">
+        </app-player-card>
+        <mat-star-rating [rating]="rating"  [starCount]="starCount" [color]="starColor" 
+                            (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+    </div>
+        
+</div>
+<div class="row">
+    <div class="col-md-12 mx-auto">
+    <ejs-tab id="element" overflowMode='Scrollable'  [cssClass]="tabClass">
+        <e-tabitems>
+            <e-tabitem>
+                <ng-template #headerText>
+    
+                    <div class="fontColor"> Information </div>
+    
+                </ng-template>
+                <ng-template #content>
+    
+                    <div class="row" *ngIf="age">
+                        <div class="col icon-text">
+                            <mat-icon>person_outline</mat-icon><span class="fontColor"><b> Age:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{age}} ans</span>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="poids">
+                        <div class="col icon-text">
+                            <mat-icon>monitor_weight_outline</mat-icon><span class="fontColor"><b> Poids:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{poids}} Kg</span>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="hauteur">
+                        <div class="col icon-text">
+                            <mat-icon>line_weight_outline</mat-icon><span class="fontColor"><b> Taille:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{hauteur}} cm</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row" *ngIf="numero">
+                        <div class="col icon-text">
+                            <mat-icon>tag_outline</mat-icon><span class="fontColor"><b> Maillot:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{numero}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="position?.length > 0">
+                        <div class="col icon-text">
+                            <mat-icon>radar_outline</mat-icon><span class="fontColor">
+                                <b> Position:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{position}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="equipe">
+                        <div class="col icon-text">
+                            <mat-icon>group_outline</mat-icon><span class="fontColor"><b> Equipe:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{equipe}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col icon-text">
+                            <mat-icon>transfer_within_a_station_outline</mat-icon><span class="fontColor"><b> Pied:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{pied}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col icon-text">
+                            <mat-icon>sports_soccer</mat-icon><span class="fontColor"><b> Buts:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{nbOfGoals}}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col icon-text">
+                            <mat-icon>ballot</mat-icon><span class="fontColor"><b> Assists:</b></span>
+                            
+                        </div>
+                        <div class="col">
+                            <span class="fontColor">{{nbOfAssists}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+    
+            </e-tabitem>
+            <e-tabitem>
+                <ng-template #headerText>
+    
+                    <div class="fontColor"> Participations </div>
+    
+                </ng-template>
+                <ng-template #content>
+    
+                    <!-- <ejs-combobox id='comboelement' #samples [dataSource]='data2' [placeholder]='text'></ejs-combobox> -->
+                    <!-- <app-website-visits-chart-card></app-website-visits-chart-card> -->
+                    <!-- <div class="row">
+                        <div class="col">
+                            <app-radial-process-card [title]="'Taux de participations'" class="fontColor"
+                            [total]="seanceRatio" [type]="'percent'" 
+                            [percent]="seanceRatio" [isSortable]="true">
+                            </app-radial-process-card>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-xl-4 col-lg-6 mb-4">
+                        <app-radial-process-card [title]="'Ajourd\'hui'" class="fontColor"  
+                        [total]="seanceToday" [type]="'percent'" 
+                        [percent]="seanceToday" [isSortable]="true">
+                        </app-radial-process-card>
+                    </div> -->
+                    <div class="row">
+                        <div class="col">
+                            <app-radial-process-card [title]="'Cette semaine'" class="fontColor"
+                            [total]="seanceWeek" [type]="'percent'" 
+                            [percent]="seanceWeek" [isSortable]="true">
+                            </app-radial-process-card>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col">
+                            <app-radial-process-card [title]="'Ce Mois'" class="fontColor"
+                            [total]="seanceMonth" [type]="'percent'" 
+                            [percent]="seanceMonth" [isSortable]="true">
+                            </app-radial-process-card>
+                        </div>
+                    </div>
+                    
+                </ng-template>
+            </e-tabitem>
+            <e-tabitem>
+                <ng-template #headerText>
+    
+                    <div class="fontColor"> Statistiques </div>
+    
+                </ng-template>
+                <ng-template #content>
+    
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col">
+                                 <app-website-visits-chart-card></app-website-visits-chart-card>
+                                 <!-- <app-conversion-rates-chart-card></app-conversion-rates-chart-card> -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ejs-chart id='chartcontainer' [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis'
+                                [title]='title' [background] = 'background' >
+                                <e-series-collection>
+                                    <e-series [dataSource]='data' type='Radar' xName='x' yName='y' drawType='Line'> </e-series>
+                                </e-series-collection>
+                        </ejs-chart>
+                            </div>
+                        </div>
+                                
+                        
+                    </div>
+    
+                </ng-template>
+    
+            </e-tabitem>
+
+            <!-- <e-tabitem>
+                <ng-template #headerText>
+    
+                    <div class="fontColor"> Rating Coach </div>
+    
+                </ng-template>
+                <ng-template #content>
+    
+                    <div class="container">
+                        <mat-star-rating [rating]="rating"  [starCount]="starCount" [color]="starColor" 
+                        (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+                        
+                    </div>
+    
+                </ng-template>
+    
+            </e-tabitem> -->
+            <e-tabitem>
+                <ng-template #headerText>
+    
+                    <div class="fontColor"> Etat de l'abonnement </div>
+                    
+                </ng-template>
+                <ng-template #content>
+
+                    <div class="alert alert-info" *ngIf="abonnement" role="alert">
+                        Votre abonnement expire le {{abonnement?.EndTime | date: 'shortDate'}}
+                </div>
+                <div class="alert alert-danger" *ngIf="!abonnement" role="alert"> 
+                    Vous n'êtes pas abonné
+                    </div>
+                </ng-template>
+            </e-tabitem>
+        </e-tabitems>
+    </ejs-tab>
+</div>
+</div>

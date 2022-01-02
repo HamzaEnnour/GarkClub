@@ -1,0 +1,78 @@
+<div class="contact1">
+    <div class="container-contact1">
+        <div class="contact1-pic js-tilt" data-tilt="">
+            <img src="/assets/imgs/gark-contact.png" alt="gark contactez nous">
+        </div>
+        <form class="contact1-form validate-form" #contactForm="ngForm" (ngSubmit)="sendEmail()">
+            <span class="contact1-form-title h1">
+                Contactez-nous
+            </span>
+            <div class="wrap-input1 validate-input" data-validate="Name is required">
+                <input class="input1" type="text" #n="ngModel" [(ngModel)]="name" name="name" placeholder="Votre nom">
+                <span class="shadow-input1"></span>
+                <span *ngIf="contactForm.submitted || n.touched" class="text-danger">
+                    <div *ngIf="n.invalid">
+                        Veuillez saisir votre nom
+                    </div>
+                </span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <input class="input1" #em="ngModel" type="text" [(ngModel)]="email" name="email" placeholder="Votre e-mail">
+                <span class="shadow-input1"></span>
+                <span *ngIf="contactForm.submitted || em.touched" class="text-danger">
+                    <div *ngIf="em.invalid">
+                        Veuillez saisir votre email
+                    </div>
+                </span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Subject is required">
+                <input class="input1" type="text" #sub="ngModel" [(ngModel)]="subject" name="subject" placeholder="Sujet">
+                <span class="shadow-input1"></span>
+                <span *ngIf="contactForm.submitted || sub.touched" class="text-danger">
+                    <div *ngIf="sub.invalid">
+                        Veuillez saisir votre email
+                    </div>
+                </span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Message is required">
+                <textarea class="input1" #msg="ngModel" name="message" [(ngModel)]="message" placeholder="Votre Message"></textarea>
+                <span class="shadow-input1"></span>
+                <span *ngIf="contactForm.submitted || msg.touched" class="text-danger">
+                    <div *ngIf="msg.invalid">
+                        Veuillez saisir votre message
+                    </div>
+                </span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Message is required">
+                <label for=""> {{'Vous êtes un robot? '+ a + '+' + b +'='}} </label>
+                <input class="input1" type="text" #reslt="ngModel" [(ngModel)]="result" name="result" placeholder="Résultat">
+                <span class="shadow-input1"></span>
+                <span *ngIf="(contactForm.submitted || reslt.touched)" class="text-danger">
+                    <div *ngIf="reslt.invalid">
+                        Champs obligatoire
+                    </div>
+                    <div *ngIf="reslt.valid && !verifyResult()">
+                        Réponse incorrect
+                    </div>
+                </span>
+            </div>
+            <div *ngIf="sent" class="mt-2 mb-3">
+                <div class="text-danger h4 text-center" *ngIf="error">
+                    Une erreur a survenue, veuillez réessayer plus tard
+                </div>
+                <div class="text-success h4 text-center" *ngIf="!error">
+                    Email envoyé avec succès
+                </div>
+            </div>
+            <div class="container-contact1-form-btn">
+                <button class="btn btn-gradiant btn-lg" [disabled]="isLoading" (click)="sendEmail()">
+                    <span> 
+                        Envoyer
+                    </span>
+                </button>
+            </div>
+           
+            
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row" *ngIf="tops?.length > 0">
+    <div class="col-sm-8">
+        <div [class]="'card '+class">
+            <div class="card-body">
+                <h5 class="card-title">Top joueurs</h5>
+
+                <div id="playerInfo" (click)="showInfo(i,joueur)" class="mb-4" *ngFor="let joueur of tops; let i = index ">
+                       <div [ngClass]="{'selected': i === selectedIndex}">
+                        <a> 
+                            {{joueur.player.firstName}} {{joueur.player.lastName}}</a>
+
+                        <span class="float-right text-muted">
+                            {{joueur.review.mean}}
+                        </span>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div [class]="'card '+class">
+            <div class="card-body">
+        <app-player-profile [selectedPlayer]="selectedPlayer"></app-player-profile>
+        <div class="text-center">
+        <mat-star-rating [rating]="rating"  [starCount]="starCount" [color]="starColor" 
+                [visiblity]="false" (ratingUpdated)="getValueStar($event)"></mat-star-rating>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="tops?.length == 0">
+    <div class="col">
+        <div class="alert alert-info">
+            Aucun joueur dans cette académie
+        </div>
+    </div>
+</div>

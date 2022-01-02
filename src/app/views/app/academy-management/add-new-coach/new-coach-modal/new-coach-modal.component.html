@@ -1,0 +1,70 @@
+<form #reservForm="ngForm">
+    <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+        Enregistrer un nouveau coach <br>
+    </h4>
+    <table class="custom-event-editor" width="100%" cellpadding="5">
+        <tbody>
+            <tr>
+                <td class="e-textlabel">Nom: </td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Nom du coach"
+                        [ngModelOptions]="{standalone: true}" type="text" id="lastName" name="lastName"
+                        [(ngModel)]="resMobile.lastName" #nm="ngModel" style="width: 100%" />
+                    <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir le nom du coach
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="e-textlabel">Prenom</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Nom du prenom"
+                        [ngModelOptions]="{standalone: true}" type="text" id="firstName" name="firstName"
+                        [(ngModel)]="resMobile.firstName" #nm="ngModel" style="width: 100%" />
+                    <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir le prenom du coach
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="e-textlabel">email</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="example@gmail.com"
+                        [ngModelOptions]="{standalone: true}" type="text" id="email" name="email"
+                        [(ngModel)]="resMobile.email" #nm="ngModel" style="width: 100%" />
+                    <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir l'e-mail du coach
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="e-textlabel">Mot de passe</td>
+                <td colspan="4">
+                    <input class="e-field e-input" required placeholder="Mot de passe"
+                        [ngModelOptions]="{standalone: true}" type="password" id="password" name="password"
+                        [(ngModel)]="resMobile.password" #nm="ngModel" style="width: 100%" />
+                    <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir le mot de passe
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <!-- <div class="text-danger" *ngIf="already">
+        Terrain indisponible à cette heure
+    </div> -->
+    <div style="display: flex; width: 100%">
+        <div>
+            <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler
+            </button>
+        </div>
+        <div style="margin: 0 auto;"></div>
+        <div>
+            <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow'" [currentState]="buttonState"
+                [isDisabled]="buttonDisabled || reservForm.invalid" (click)="onSubmit()">
+                <span>Créer</span>
+            </app-state-button>
+        </div>
+    </div>
+  </form>
+  
+  <simple-notifications></simple-notifications>

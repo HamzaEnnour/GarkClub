@@ -1,0 +1,47 @@
+<ejs-autocomplete id='ddlelement' #samples [dataSource]='searchData' [fields]='fields' [placeholder]='text' [itemTemplate]="itemTemplate" [query]='query0'(select)="onFiltering($event)"></ejs-autocomplete> 
+
+<div class="col-lg-4 col-md-6 col-sm-6 mb-3" *ngFor="let item of dataSource; let i = index">
+    <div class="my-card" >
+      <div style="cursor: pointer; padding: 10px;">
+        <div class="flex">
+          <p class="h4 ">
+            {{ item.firstName }} {{item.lastName}}
+          </p>
+          <div class="spacer"></div>
+          <button mat-mini-fab style="color: #3ab763;" class="fab-button-overlay mr-2" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="details(item)" mat-menu-item>
+              <mat-icon>visibility</mat-icon>
+              <span>Ouvrir</span>
+            </button>
+            <button (click)="edit(item)" mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Modifier</span>
+            </button>
+            <button (click)="delete(item)" mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Supprimer</span>
+            </button>
+           
+          </mat-menu>
+        </div>
+        <p  (click)=details(item)>
+          <mat-icon style="vertical-align: bottom;" >loyalty</mat-icon> <b>{{item.role}}</b>
+        </p>
+
+        
+      </div>
+      <app-player-profile></app-player-profile>
+    </div>
+    
+  </div>
+  <div id="fixedbutton">
+    <button mat-fab *ngIf="isMobile" (click)="openAddReservationMobile()" class="btn btn-gradiant">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-fab *ngIf="!isMobile" (click)="addReservationDialog()" class="btn btn-gradiant">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>

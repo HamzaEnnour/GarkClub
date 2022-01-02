@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row" [ngStyle]="{'padding-bottom' : isMobile ? '120px' : '100px'}">
+      <div class="col-md-12" *ngIf="loading">
+        <p> Chargement ... </p>
+      </div>
+  <div class="col-lg-4 col-md-6 col-sm-6 mb-3" *ngFor="let group of dataSource; let i = index">
+  <div id="card" class="card mb-3 rounded-top" [ngStyle]="{'border-top': '5px solid ' + group?.color}">
+
+    <div class="card-header" style="text-align: center;text-justify: auto">
+      <!-- <button mat-mini-fab style="color: #3ab763;" class="fab-button-overlay mr-2" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button> -->
+      <!-- <mat-menu #menu="matMenu">
+        <button (click)="details(terrain)" mat-menu-item>
+          <mat-icon>visibility</mat-icon>
+          <span>Explorer</span>
+        </button>
+        <button (click)="addPlayers(terrain)" mat-menu-item>
+          <mat-icon>visibility</mat-icon>
+          <span>Affecter</span>
+        </button>
+        <button (click)="edit(terrain)" mat-menu-item>
+          <mat-icon>edit</mat-icon>
+          <span>Modifier</span>
+        </button>
+        <button (click)="delete(terrain)" mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Supprimer</span>
+        </button>
+  
+      </mat-menu> -->
+        <h2><mat-icon>group_work</mat-icon>{{ group.name }}</h2>
+      
+      </div>
+    <div class="card-body">
+      <div class="row">
+        <div id="colLeft" class="col font-weight-bold">Info:
+          
+        </div>
+        <!-- <div id="colRight" class="col font-weight-bold">Nombre des joueurs:
+          <div class="font-weight-normal">{{dataSource?.length}}</div>
+        </div> -->
+      </div>
+      <p class="card-text">{{ (group.players == null || group?.players?.length == 0) ? ' Groupe vide' : group?.players?.length  + ' Joueurs'}}</p>
+      
+      <div class="text-center">
+        <button (click)="details(group)" class="btn btn-light rounded-0">Voir</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  <!-- <div id="fixedbutton">
+    <button mat-fab *ngIf="isMobile" (click)="addGroup()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-fab *ngIf="!isMobile" (click)="addGroup()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+   -->
+  <simple-notifications></simple-notifications>

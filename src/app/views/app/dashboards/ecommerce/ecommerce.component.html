@@ -1,0 +1,189 @@
+<div class="row">
+  <div class="col-12">
+    <app-heading [title]="'Comptabilité'"></app-heading>
+    <app-breadcrumb></app-breadcrumb>
+    <div class="separator mb-5"></div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div *ngFor="let item of stats" class="col-md-4 col-sm-12 mb-3">
+    <div class="icon-row-item" style="width: inherit;">
+      <div class="card">
+        <div class="card-body text-center">
+          <i [class]="item.icon" [ngStyle]="{ 'color' : item.color }"></i>
+          <p class="card-text font-weight-bold" style="margin-top: 10px; margin-bottom: 10px;">
+            {{ item.name }}
+          </p>
+          <p class="lead text-center"> {{ item.amount }} DT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row" [ngStyle]="{'padding-bottom' : isMobile ? '120px' : '10px'}">
+  <div class="col-12">
+    <div class="card h-100">
+      <div class="card-body" id="data-table">
+        
+
+        <div class="alert alert-success" role="alert">
+          <i class="fa fa-check" aria-hidden="true"></i> Participants ayant payé ({{playersPayed?.length}})
+        </div>
+        <div class="dashboard-best-sellers">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Participant</th>
+                <th scope="col">Expire le:</th>
+                <!-- <th scope="col">Montant dû à collecter</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of playersPayed;  let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td *ngIf="!user?.player?.picture">
+                  <img mat-card-image class="imgs" alt="thumb" src="../../../../../assets/imgs/img_avatar.png" />
+                </td>
+                <td *ngIf="user?.player?.picture">
+                  <img mat-card-image class="imgs" alt="thumb" [src]="user?.player?.picture" />
+                </td>
+                <!-- <td><div mat-card-avatar class="example-header-image" 
+        style="background-image: url('../../../../../assets/imgs/img_avatar.png');"></div></td> -->
+                <td>{{user?.player?.lastName | uppercase}} {{user?.player?.firstName | uppercase}}</td>
+                <td>{{user?.expire | date: 'shortDate'}}</td>
+                <!-- <td>-</td> -->
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <ngx-datatable #table class="material mt-2" [messages]="my_messages" [rows]="finances"
+            [loadingIndicator]="loadingIndicator" [columns]="columns" [columnMode]="ColumnMode.force"
+            [headerHeight]="75" [footerHeight]="100" rowHeight="auto" [limit]="currentPageLimit"
+            [reorderable]="reorderable">
+
+            <ngx-datatable-column prop="label" name="Participants" [flexGrow]="3">
+              <ng-template let-row="row" class="fs-8" let-value="value" ngx-datatable-cell-template>
+                <span class="fs-8">{{ value  }}</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Montant collecté" prop="date" [flexGrow]="1">
+              <ng-template let-row="row" class="fs-8" let-value="value" ngx-datatable-cell-template>
+                <span class="fs-8"> {{ value  }}</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column *ngIf="!isMobile" name="Montant dû à collecter " prop="isSpent" [flexGrow]="1">
+              <ng-template let-row="row" class="fs-8" let-value="value" ngx-datatable-cell-template>
+                <span class="fs-8"> {{ value  }}</span>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-footer>
+              <ng-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+                let-curPage="curPage" let-offset="offset" ngx-datatable-footer-template>
+                <app-datatable-pager [page]="curPage" [visiblePagesCount]="currentVisible" [size]="pageSize"
+                  [count]="rowCount" [hidden]="false" (change)="table.onFooterPage($event)">
+                </app-datatable-pager>
+              </ng-template>
+            </ngx-datatable-footer>
+          </ngx-datatable> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<div class="row" [ngStyle]="{'padding-bottom' : isMobile ? '120px' : '10px'}">
+  <div class="col-12">
+    <div class="card h-100">
+      <div class="card-body" id="data-table">
+
+        <!-- <div *ngIf="isMobile" style="display: flex; margin-bottom: 10px; padding-left: 1.5rem; padding-right: 1.5rem">
+          <div>
+            <button class="btn btn-gradiant btn-shadow" style="height: 38px;" (click)="clickCreateIncome()"> Revenue
+            </button>
+          </div>
+          <div style="margin: 0 auto;"></div>
+          <div>
+            <button class="btn btn-danger btn-shadow" style="height: 38px;" (click)="clickCreateSpent()"> Dépense
+            </button>
+          </div>
+        </div> -->
+
+        <div class="alert alert-danger" role="alert">
+          <i class="fa fa-times" aria-hidden="true"></i> Participants n'ayant pas encore payé
+          ({{playersNotPayed?.length}})
+        </div>
+        <div class="dashboard-best-sellers">
+
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Participant</th>
+                <!-- <th scope="col">Montant collecté</th> -->
+                <!-- <th scope="col">Montant dû à collecter</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of playersNotPayed;  let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td *ngIf="user?.player?.picture">
+                  <img mat-card-image class="imgs" alt="thumb" [src]="user?.player?.picture" />
+                </td>
+                <td *ngIf="!user?.player?.picture">
+                  <img mat-card-image class="imgs" alt="thumb" src="../../../../../assets/imgs/img_avatar.png" />
+                </td>
+                <!-- <td><div mat-card-avatar class="example-header-image" 
+        style="background-image: url('../../../../../assets/imgs/img_avatar.png');"></div></td> -->
+        <td>{{user?.player?.lastName | uppercase}} {{user?.player?.firstName | uppercase}}</td>
+        <!-- <td>-</td> -->
+        <!-- <td>-</td> -->
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <ngx-datatable #table class="material mt-2" [messages]="my_messages" [rows]="playersNotPayed"
+            [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="75" [footerHeight]="100"
+            rowHeight="auto" [limit]="currentPageLimit" [reorderable]="reorderable">
+
+            <ngx-datatable-column prop="lastName" name="Participants" [flexGrow]="3">
+              <ng-template let-row="row" class="fs-8" let-value="value" ngx-datatable-cell-template>
+                <span class="fs-8">{{ lastName }}</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Montant collecté" prop="date" [flexGrow]="1">
+              <ng-template let-row="row" class="fs-8" let-value="value" ngx-datatable-cell-template>
+                <span class="fs-8"> {{ value  }}</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column *ngIf="!isMobile" name="Montant dû à collecter " prop="isSpent" [flexGrow]="1">
+              <ng-template let-row="row" class="fs-8" let-value="value" ngx-datatable-cell-template>
+                <span class="fs-8"> {{ value  }}</span>
+              </ng-template>
+            </ngx-datatable-column> 
+
+            <ngx-datatable-footer>
+              <ng-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+                let-curPage="curPage" let-offset="offset" ngx-datatable-footer-template>
+                <app-datatable-pager [page]="curPage" [visiblePagesCount]="currentVisible" [size]="pageSize"
+                  [count]="rowCount" [hidden]="false" (change)="table.onFooterPage($event)">
+                </app-datatable-pager>
+              </ng-template>
+            </ngx-datatable-footer>
+          </ngx-datatable> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

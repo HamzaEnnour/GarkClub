@@ -1,0 +1,108 @@
+<div class="container">
+  <div>
+    <h4 class="display-4">{{currentAcademy?.name}}</h4>
+    <hr />
+  </div>
+    <div class="input-group mb-3" style="padding-left: 1.5rem; padding-right: 1.5rem">
+      <input type="text" class="form-control" #search id="search" placeholder="Chercher ..." aria-label="Chercher"
+              aria-describedby="search-addon">
+      <div class="input-group-append">
+        <span class="input-group-text border-0" id="search-addon">
+          <button type="button" class="btn btn-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="flaticon-setting-lines"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="getAll()">Tous</a>
+              <a class="dropdown-item" *ngFor="let group of groupsList" (click)="filterByGroup(group)">{{group.name}}</a></div>
+        </span>
+
+        <span class="layout">
+          <button class="rounded-0 btn-layout" type="button" [ngClass]="{'btn btn-light active': !activateLayoutFlag}" (click)="activateLayout(false)">
+            <i class="fa fa-th-large rounded-0"></i>
+          </button>
+          <button class="rounded-0 btn-layout" type="button" [ngClass]="{'btn btn-light active': activateLayoutFlag}" (click)="activateLayout(true)">
+            <i class="fa fa-bars rounded-0"></i>
+          </button>
+          
+        </span>
+      </div>
+    </div> 
+      <div class="row">
+        <div class="col">
+          <p>{{nbrPlayers}} Membres <b *ngIf="selectedGroup">({{selectedGroup?.name}})</b>
+                               <b *ngIf="!selectedGroup">(Tous)</b></p>
+        </div>
+      </div>
+      
+  <div class="row" *ngIf="!activateLayoutFlag">
+      <div class="col-md-4" *ngFor="let user of players">
+          <div class="card user-card" [ngStyle]="{'border-top': selectedGroup ? '3px solid' + selectedGroup?.color : '3px solid' + user?.player?.groupe?.color}">
+            <div class="ribbon-wrapper">
+              <div *ngIf="user?.payed" class="ribbon green">Payé</div>
+              <div *ngIf="!user?.payed" class="ribbon red">Non Payé</div>
+          </div>
+              <div class="card-block">
+                  <div class="user-image" *ngIf="user?.player?.picture">
+                      <img [src]="user?.player?.picture" class="img-radius" alt="User-Profile-Image">
+                  </div>
+                  <div class="user-image" *ngIf="!user?.player?.picture">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
+                </div>
+                
+                  <h6 class="f-w-600 m-t-25 m-b-10">
+                    {{user?.player?.firstName | uppercase }} {{user?.player?.lastName | uppercase}}
+                  </h6>
+                  <p class="text-muted">Active | {{user?.player?.gender }}</p>
+                  <p class="text-muted">{{user?.player?.email }}</p>
+                  <hr>
+                  <p class="text-muted">Equipe</p>
+                  <p class="text-muted">{{user?.player?.groupe?.name}}</p>
+                  <hr>
+                  <div class="row justify-content-center user-social-link">
+                  </div>
+                  <button type="button" class="btn btn-info rounded-0" (click)="navigateToProfile(user)">Profil</button>
+              </div>
+          </div>
+      </div>
+</div>
+</div>
+
+
+
+<table class="table table-borderless" *ngIf="activateLayoutFlag">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Equipe</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of players;  let i = index">
+      <th scope="row">{{i+1}}</th>
+<td *ngIf="user?.player?.picture">
+  <img mat-card-image class="imgs" alt="thumb" [src]="user?.player?.picture" />
+</td>
+<td *ngIf="!user?.player?.picture">
+  <img mat-card-image class="imgs" alt="thumb" src="../../../../../assets/imgs/img_avatar.png" />
+</td>
+      <!-- <td><div mat-card-avatar class="example-header-image" 
+        style="background-image: url('../../../../../assets/imgs/img_avatar.png');"></div></td> -->
+      <td>{{user?.player?.lastName | uppercase}}</td>
+      <td>{{user?.player?.firstName | uppercase}}</td>
+      <td>{{user?.player?.groupe?.name}}</td>
+      <td>{{ user?.player?.email }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div id="fixedbutton">
+  <button mat-fab (click)="openDialog()">
+    <!-- <button mat-fab> -->
+      <mat-icon>add</mat-icon>
+  </button>
+</div>

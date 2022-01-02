@@ -1,0 +1,107 @@
+  <div class="input-group mb-3" style="padding-left: 1.5rem; padding-right: 1.5rem">
+    <div>
+      <h4 class="display-4">{{currentAcademy?.name}}</h4>
+      <hr />
+    </div>
+        <div class="row" style="width: 95%;">
+          <div class="col-sm-10">
+            <ejs-autocomplete id='ddlelement' #samples [dataSource]='searchData' [fields]='fields' [placeholder]='text' [itemTemplate]="itemTemplate" 
+            [query]='query0'(select)="onFiltering($event)"></ejs-autocomplete>
+          </div>  
+          <div class="col-sm-2">
+            <button class="btn btn-secondary rounded-0"
+            [disabled]="!flagSelected"
+            (click)="affectCoachToAcademy(selectedCoach)">Ajouter</button>
+          </div>
+        </div>
+  </div>  
+  <div *ngIf="isMobile">
+  
+    <div class="entete">
+      <!-- Joueurs ({{players?.length}}) -->
+    </div>
+    <div class="fontColor" *ngFor="let coach of academyCoaches">
+      <mat-card class="example-card">
+        <mat-card-header>
+            <div *ngIf="coach?.picture" mat-card-avatar class="example-header-image"
+              [ngStyle]="{'background-image': 'url('+coach?.picture+')'}">
+            </div>
+
+            <div *ngIf="!coach?.picture" mat-card-avatar class="example-header-image"
+              style="background-image: url('../../../../assets/imgs/img_avatar.png');">
+            </div>
+            <mat-card-title>
+              {{coach?.firstName}} {{coach?.lastName}}
+            </mat-card-title>
+            <mat-card-subtitle>{{coach?.email}}</mat-card-subtitle>
+            
+        </mat-card-header>
+        <div class="text-right">
+          <button mat-button class="btn btn-info" (click)="navigateToCoachProfile(coach)">Voir</button>
+        </div>
+      </mat-card>
+    </div>
+  
+  </div>
+  
+  <div class="container" *ngIf="!isMobile">
+  
+      <div class="row">
+        <div class="col" *ngFor="let coach of academyCoaches">
+            <div class="card user-card">
+              <div class="card user-card">
+                <div class="ribbon-wrapper">
+                  <div class="ribbon red">Coach</div>
+              </div>
+              <div class="card-header">
+                <button class="rounded-0 btn-layout" type="button" (click)="deleteCoachFromAcademy(coach)">
+                  <i class="fa fa-trash rounded-0" aria-hidden="true"></i>
+                </button>
+              </div>
+              <div class="card-block">
+                <div *ngIf="coach?.picture" class="user-image">
+                  <img [src]="coach?.picture" class="img-radius" alt="User-Profile-Image">
+                </div>
+
+                <div *ngIf="!coach?.picture" class="user-image">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
+                </div>
+                <h6 class="f-w-600 m-t-25 m-b-10">
+                  {{coach?.firstName}} {{coach?.lastName}}
+                      </h6>
+                      <p class="text-muted">Active | Coach</p>
+                      <p class="text-muted">          
+                        {{coach?.email}}         
+                      </p>
+ 
+                <hr>
+                <div class="row justify-content-center user-social-link">
+                  <!-- <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+                  <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+                  <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div> -->
+                </div>
+                <button type="button" class="btn btn-info rounded-0" (click)="navigateToCoachProfile(coach)">profil</button>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  
+  </div>
+
+  <div>
+    <!-- <button type="button">Retour</button> -->
+  </div>
+  
+  <div class="space"></div>
+
+
+<div id="fixedbutton">
+    <button mat-fab *ngIf="isMobile" (click)="openAddReservationMobile()" class="btn btn-gradiant">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-fab *ngIf="!isMobile" (click)="addReservationDialog()" class="btn btn-gradiant">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<simple-notifications></simple-notifications>

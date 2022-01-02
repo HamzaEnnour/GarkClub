@@ -1,0 +1,56 @@
+<!-- <h2 mat-dialog-title>Edit Group</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="EquipmentFormGroup">
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-label>Name</mat-label>
+      </div>
+      <div class="col-sm-8">
+
+        <input matInput class="form-control" id="name" type="text" placeholder="name" formControlName="name">
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="editAcademy()">Edit</button>
+</mat-dialog-actions> -->
+
+<form #reservForm="ngForm">
+  <h4 class="modal-title text-center" style="margin-bottom: 0 !important;">
+      Modifier le groupe <br>
+      <!-- <span *ngIf="uniqueTerrain">{{monTerrain}}</span> -->
+  </h4>
+  <table class="custom-event-editor" width="100%" cellpadding="5">
+      <tbody>
+          <tr>
+              <td class="e-textlabel">Nom du groupe</td>
+              <td colspan="4">
+                  <input class="e-field e-input" required placeholder="Nom du groupe"
+                      [ngModelOptions]="{standalone: true}" type="text" id="Name-Mob" name="Name"
+                      [(ngModel)]="resMobile.name" #nm="ngModel" style="width: 100%" />
+                  <div class="text-danger" *ngIf="nm.touched && nm.invalid"> Veuillez saisir le nom du réservant
+                  </div>
+              </td>
+
+          </tr>
+      </tbody>
+  </table>
+  <!-- <div class="text-danger" *ngIf="already">
+      Terrain indisponible à cette heure
+  </div> -->
+  <div style="display: flex; width: 100%">
+      <div>
+          <button class="btn btn-lg btn-shadow btn-danger" (click)="onNoClick()"> Annuler
+          </button>
+      </div>
+      <div style="margin: 0 auto;"></div>
+      <div>
+          <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow'" [currentState]="buttonState"
+              [isDisabled]="buttonDisabled || reservForm.invalid" (click)="editGroupe()">
+              <span>Modifier</span>
+          </app-state-button>
+      </div>
+  </div>
+</form>

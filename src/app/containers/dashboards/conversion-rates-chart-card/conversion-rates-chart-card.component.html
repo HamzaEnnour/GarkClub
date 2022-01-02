@@ -1,0 +1,42 @@
+<div [class]="'card dashboard-filled-line-chart '+class">
+    <div class="card-body">
+        <div class="float-left float-none-xs">
+            <div class="d-inline-block">
+                <h5 class="d-inline">Nombre de réservation par jour</h5>
+                <span class="text-muted text-small d-block"></span>
+            </div>
+        </div>
+        <!-- <div *ngIf="control" class="btn-group float-right float-none-xs mt-2" dropdown>
+            <button id="button-basic" dropdownToggle type="button"
+                class="btn btn-outline-primary btn-xs dropdown-toggle" aria-controls="dropdown-basic">
+                Cette semaine <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" href="javascript:;"> La semaine précedente </a>
+                </li>
+                <li role="menuitem"><a class="dropdown-item" href="javascript:;">Ce mois</a>
+                </li>
+            </ul>
+        </div> -->
+
+      
+
+        <div *ngIf="control" class="btn-group float-right float-none-xs mt-2">
+            <div class="btn-group" dropdown>
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-gradiant dropdown-toggle"
+                    aria-controls="dropdown-basic">
+                    {{ typeSelected }} <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem" *ngFor="let t of filterTypes"><a class="dropdown-item" style="cursor: pointer;" (click)="changeType(t.key)">
+                            {{ t.val }} </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body pt-0">
+        <app-area-chart *ngIf="!loading" [max]="maxValue" [shadow]="true" class="chart" [options]="chartDataConfig.areaChartOptions"
+            [data]="conversionChartData"></app-area-chart>
+    </div>
+</div>

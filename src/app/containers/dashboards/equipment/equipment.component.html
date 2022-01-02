@@ -1,0 +1,26 @@
+<div class="col-md-12 mb-2">
+  <h2> <i class="flaticon-soccer-field flat"></i> Matériel </h2>
+</div>
+<div [class]="class">
+  <div class="row">
+          <div class="card" style="width: 18rem; margin-bottom: 10px;" *ngFor="let item of dataSource">
+            <div class="col">
+              <div class="card-body text-center">
+                <i [class]="item.icon" [ngStyle]="{ 'color' : item.color }"></i>
+                <p class="card-text text-center font-weight-bold" style="margin-top: 5px; margin-bottom: 5px;">
+                  {{item.category}}
+                  </p>
+                  <p class="lead text-center">{{item.quantity}}</p>
+            </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="row" *ngIf="dataSource?.length == 0">
+    <div class="col">
+        <div class="alert alert-info">
+            Pas de matérial dans cette académie
+        </div>
+    </div>
+</div>

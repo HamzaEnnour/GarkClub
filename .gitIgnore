@@ -1,6 +1,5 @@
-.nyc_output
 node_modules
-
+dist
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
@@ -8,9 +7,3 @@ node_modules
 !.yarn/versions
 /.yarn
 .yarn
-.pnp.*
-.vscode
-.DS_Store 
-logfile.log
-uncaughtExceptions.log
-yarn.*

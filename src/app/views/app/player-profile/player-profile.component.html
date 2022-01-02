@@ -1,0 +1,58 @@
+<div id="background" *ngIf="playerName?.length > 0">
+    <!-- <div id="Layer0"><img src="../../../assets/imgs/fifaCard/Layer0.png"></div> -->
+    <div [id]="selectedItem"><img [src]="itemImageUrl"></div>
+    <div id="EDITABLE">
+        <div class="num" [ngStyle]="{'color' : color, 'text-align': 'center','font-size' : sizeName+'px'}">
+            {{playerName}}</div>
+    </div>
+    <div id="PACSHOPAS">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px',
+        'margin-top': '-5px'}">PAC</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px'}">SHO</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px'}">PAS</div>
+    </div>
+    
+    <div id="DRIDEFPHY">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '44px',
+         'margin-top': '-5px','margin-left': '5px'}">DRI</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px', 'width': '44px',
+        'margin-left': '5px'}">DEF</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px', 'width': '44px',
+        'margin-left': '5px'}">PHY</div>
+    </div>
+    <div id="layer_928273">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '25px',
+         'margin-top': '-5px',
+         'margin-left': '-10px'}">{{pac}}</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '25px','margin-left': '-10px'}">{{sho}}</div>
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizeScore+'px',
+         'width': '25px','margin-left': '-10px'}">{{pas}}</div>
+    </div>
+   <div id="layer_928273_0">
+       <div class="num" [ngStyle]="{'color' : color,
+        'font-size' : sizeScore+'px',
+        'width': '25px',
+        'margin-top': '-5px'}">{{dri}}</div>
+        <div class="num" [ngStyle]="{'color' : color, 
+        'font-size' : sizeScore+'px',
+        'width': '25px'}">{{def}}</div>
+    <div class="num" [ngStyle]="{'color' : color,
+    'font-size' : sizeScore+'px',
+    'width': '25px'}">{{phy}}</div>
+</div>
+    <div id="layer_99">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : size+'px'}">{{mean}}</div>
+    </div>
+    <div id="POS" *ngIf="position?.length > 0">
+        <div class="num" [ngStyle]="{'color' : color, 'font-size' : sizePos+'px'}">{{position}}</div>
+    </div>
+    <div id="OUTLINES"><img src="../../../assets/imgs/fifaCard/OUTLINES.png"></div>
+    <div id="Layer1"><img src="../../../assets/imgs/fifaCard/Layer1.png"></div>
+</div>
+<br />

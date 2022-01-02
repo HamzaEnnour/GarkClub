@@ -1,0 +1,16 @@
+#playerInfo:hover{
+    cursor: pointer;
+
+}
+
+.selected {
+    color: rgb(0, 0, 0);
+    background-color: rgb(238, 238, 238);
+    font-weight: bolder;
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+
+a:active { 
+    color: red;
+}

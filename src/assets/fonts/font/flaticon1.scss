@@ -1,0 +1,65 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?e736516b0a403a989371a62df2d31585") format("truetype"),
+url("./flaticon.woff?e736516b0a403a989371a62df2d31585") format("woff"),
+url("./flaticon.woff2?e736516b0a403a989371a62df2d31585") format("woff2"),
+url("./flaticon.eot?e736516b0a403a989371a62df2d31585#iefix") format("embedded-opentype"),
+url("./flaticon.svg?e736516b0a403a989371a62df2d31585#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "football": "\f101",
+    "strategy": "\f102",
+    "whistle": "\f103",
+    "football-jersey": "\f104",
+    "cupping": "\f105",
+    "uniform": "\f106",
+    "footwear": "\f107",
+    "soccer": "\f108",
+    "soccer-goal": "\f109",
+    "soccer-1": "\f10a",
+);
+
+.flaticon-football:before {
+    content: map-get($flaticon-map, "football");
+}
+.flaticon-strategy:before {
+    content: map-get($flaticon-map, "strategy");
+}
+.flaticon-whistle:before {
+    content: map-get($flaticon-map, "whistle");
+}
+.flaticon-football-jersey:before {
+    content: map-get($flaticon-map, "football-jersey");
+}
+.flaticon-cupping:before {
+    content: map-get($flaticon-map, "cupping");
+}
+.flaticon-uniform:before {
+    content: map-get($flaticon-map, "uniform");
+}
+.flaticon-footwear:before {
+    content: map-get($flaticon-map, "footwear");
+}
+.flaticon-soccer:before {
+    content: map-get($flaticon-map, "soccer");
+}
+.flaticon-soccer-goal:before {
+    content: map-get($flaticon-map, "soccer-goal");
+}
+.flaticon-soccer-1:before {
+    content: map-get($flaticon-map, "soccer-1");
+}

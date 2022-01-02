@@ -1,0 +1,67 @@
+<div id="normal-view">
+    <div id="fixedbutton">
+      <button mat-fab
+      class="btn btn-gradiant"
+          matTooltip="Ajouter une nouvelle académie"
+          matTooltipPosition="left"
+          matTooltipHideDelay="800">
+          <mat-icon>add</mat-icon>
+        </button>
+  </div>
+  <div class="container">
+    <div class="row" [ngStyle]="{'padding-bottom' : isMobileStyle ? '120px' : '100px'}">
+      <div class="col-lg-4 col-md-6 col-sm-6 mb-3" *ngFor="let terrain of dataSource; let i = index">
+        <div class="my-card" >
+            <div (click)=details(terrain)  [ngStyle]="{'background-image' : 'url(' + terrain.image + ')'}" [id]="'img-'+i" class="image-card pointer"  >
+            </div>
+          <div style="cursor: pointer; padding: 10px;">
+            <div class="flex">
+              <p class="h4 "  (click)=details(terrain)>
+                <b>Nom : </b> {{ terrain.name }}
+              </p>
+              <div class="spacer"></div>
+              <button mat-mini-fab style="color: #3ab763;" class="fab-button-overlay mr-2" [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button (click)="details(terrain)" mat-menu-item>
+                  <mat-icon>visibility</mat-icon>
+                  <span>Ouvrir</span>
+                </button>
+                <button (click)="edit(terrain)" mat-menu-item>
+                  <mat-icon>edit</mat-icon>
+                  <span>Modifier</span>
+                </button>
+                <button (click)="delete(terrain)" mat-menu-item>
+                  <mat-icon>delete</mat-icon>
+                  <span>Supprimer</span>
+                </button>
+                <button (click)="addCoach(terrain)" mat-menu-item>
+                  <mat-icon>library_add</mat-icon>
+                  <span>Gérer coaches</span>
+                </button>
+                <button (click)="manegePlayers(terrain)" mat-menu-item>
+                  <mat-icon>group</mat-icon>
+                  <span>Gérer joueurs</span>
+                </button>
+               
+              </mat-menu>
+            </div>
+            <p  (click)=details(terrain)>
+              <mat-icon style="vertical-align: bottom;" >location_on</mat-icon> <b>Addresse : </b> {{ terrain.address }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <div id="fixedbutton">
+    <button mat-fab (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<simple-notifications></simple-notifications>

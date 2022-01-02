@@ -1,0 +1,190 @@
+<div id="normal-view">
+    <div class="container" id="main">
+        <div class="row justify-content-center">
+            <div class="col-md-6" *ngIf="isLoading">
+                <h5 class="text-center"> Chargement ... </h5>
+            </div>
+
+
+            <div class="col-md-4" id="test" *ngIf="!isLoading && !isMobile">
+                <ejs-calendar locale='fr-CH' style="max-width: none !important;" #calendar (change)="deposit()"
+                    [value]='dateValue' start='Week'></ejs-calendar>
+                <div class="btn-group" style="margin-top: 10px; width: 100%;" dropdown>
+                    <button id="button-animated" dropdownToggle type="button"
+                        class="btn btn-gradiant btn-block dropdown-toggle" aria-controls="dropdown-animated">
+                        {{ selectedAcademy?.name }}<span class="caret"></span>
+                    </button>
+                    <!-- <ul id="dropdown-animated" style="width: 100%;" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem" *ngFor="let academy of listAcademiesByCoach">
+                            <a class="dropdown-item">
+                                {{ academy.name}}
+                            </a>
+                        </li>
+                    </ul> -->
+                    <ul id="dropdown-animated" style="width: 100%;" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem" *ngFor="let academy of listAcademiesByCoach" style="cursor: pointer;">
+                            <a class="dropdown-item" (click)="showSelectedAcademy(academy)">
+                                {{ academy?.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- <div class="btn-group" style="margin-top: 10px; width: 100%;" dropdown>
+                    <button id="button-animated" dropdownToggle type="button"
+                        class="btn btn-gradiant btn-block dropdown-toggle" aria-controls="dropdown-animated">
+                        {{selectedGroup?.name}} <span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-animated" style="width: 100%;" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem" *ngFor="let group of ListGroup">
+                            <a class="dropdown-item" (click)="showSelectedGroup(group)">
+                                {{group?.name}}
+                            </a>
+                        </li>
+
+                    </ul>
+                </div> -->
+            </div>
+
+            
+            <div class="col-md-8" *ngIf="!isLoading && !isMobile"
+                [ngStyle]="{ 'background-image' : 'linear-gradient(90deg, rgba(51,50,50,0.5) 0%, rgba(121,119,119,0.5) 46%, rgba(255,255,255,0.3) 100%), url('+ image +')' }"
+                style="background-size: 100%; background-position: center; background-repeat: no-repeat;">
+                <div class="overlay">
+
+                    <div class="data-overlay">
+                        <div style="display: flex; margin-top: 10px;">
+                            <div class="flex">
+                                <h1 style="margin :0 !important;"> {{selectedAcademy?.name}} </h1>
+                                <h2 *ngFor="let group of ListGroup">
+                                    <span class="dot" [ngStyle]="{'background-color': group?.color }"></span>
+                                     {{group?.name}}
+                                </h2>
+                            </div>
+                            <div style="margin: 0 auto;"></div>
+                            <!-- <div style="margin-right: 25px;">
+                                <button mat-fab (click)="openEditAcademy()" class="edit-web">
+                                    <i class="flaticon-setting-lines"></i>
+                                </button>
+
+                            </div> -->
+                        </div>
+                        <div style="margin: auto 0"></div>
+                        <!-- <div class="marged-top">
+                            <button mat-fab class="edit-web" (click)="openDialog('select')">
+                                <mat-icon>photo_camera</mat-icon>
+                            </button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mb-3" *ngIf="!isLoading && isMobile" id="background-image-mobile-view"
+                [ngStyle]="{ 'background-image' : 'linear-gradient(90deg, rgba(51,50,50,0.5) 0%, rgba(121,119,119,0.5) 46%, rgba(255,255,255,0.3) 100%), url('+ image +')' }"
+                style="background-size: 100%; background-position: center; background-repeat: no-repeat; height: 180px;">
+                <div class="overlay">
+                    <div class="data-overlay">
+                        <div style="display: flex;">
+                            <div class="container-fluid">
+                                <h1 style="margin :0 !important;"> {{selectedAcademy?.name}} </h1>
+                                <h2 *ngFor="let group of ListGroup">
+                                    <span class="dot" [ngStyle]="{'background-color': group?.color }"></span>
+                                     {{group?.name}}
+                                </h2>
+                            </div>
+                            <div style="margin: 0 auto;"></div>
+                            <!-- <div style="margin-right: 13px;">
+                                <button mat-mini-fab class="edit-mobile" (click)="openEditAcademy()">
+                                    <i class="flaticon-setting-lines"></i>
+                                </button>
+
+                            </div> -->
+                        </div>
+                        <div style="margin: auto 0"></div>
+                        <!-- <div class="marged-top">
+                            <button mat-mini-fab class="edit-mobile" (click)="openDialog('select')">
+                                <mat-icon>photo_camera</mat-icon>
+                            </button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-0" id="test" *ngIf="!isLoading && isMobile">
+                <ejs-calendar locale='fr-CH' style="max-width: none !important;" #calendar (change)="deposit()"
+                    [value]='dateValue' start='Week'></ejs-calendar>
+                <div class="btn-group" style="margin-top: 10px; width: 100%;" dropdown>
+                    <button id="button-animated" dropdownToggle type="button"
+                        class="btn btn-gradiant btn-block dropdown-toggle" aria-controls="dropdown-animated">
+                        {{selectedAcademy?.name}}<span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-animated" style="width: 100%;" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem" *ngFor="let academy of listAcademiesByCoach">
+                            <a class="dropdown-item" (click)="showSelectedAcademy(academy)">
+                                {{academy?.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <!-- <div class="btn-group" style="margin-top: 10px; width: 100%;" dropdown>
+                    <button id="button-animated" dropdownToggle type="button"
+                        class="btn btn-gradiant btn-block dropdown-toggle" aria-controls="dropdown-animated">
+                        Groupe <span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-animated" style="width: 100%;" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-animated">
+                        <li role="menuitem" *ngFor="let group of ListGroup">
+                            <a class="dropdown-item" (click)="showSelectedGroup(group)">
+                                {{group?.name}}
+                            </a>
+                        </li>
+
+                    </ul>
+                </div> -->
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+
+                    <div *ngFor="let col of terrainsColors">
+                        <div style="display: flex">
+                            <div class="mr-2" style="display: flex; flex-direction: column;">
+                                <div style="width: 15px; height: 15px; border-radius: 50%; margin-top: auto; margin-bottom: auto;"
+                                    [ngStyle]="{ 'background-color' : 'red' }"></div>
+                            </div>
+                            <div>
+                                <h2 style="margin: 0 !important">name</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-bottom: 100px;">
+                    <ejs-schedule #scheduleObj width='100%' [currentView]="currentViewMode" height='550px'
+                        [selectedDate]="selectedDate" [eventSettings]="eventSettings"
+                        (actionBegin)="onActionBegin($event)" (eventRendered)="onEventRendered($event)" locale='fr-CH'
+                        [timeScale]="timeScale" (popupOpen)="onPopupOpen($event)">
+                        <e-views>
+                            <e-view option="Day">Jour</e-view>
+                            <e-view option="Week">Semaine</e-view>
+                            <e-view option="Month">Mois</e-view>
+                        </e-views>
+                    </ejs-schedule>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="fixedbutton">
+        <button mat-fab *ngIf="isMobile" (click)="openAddReservationMobile($event)" class="btn btn-gradiant">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-fab *ngIf="!isMobile" (click)="addReservationDialog($event)" class="btn btn-gradiant">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+</div>
+<simple-notifications></simple-notifications>
